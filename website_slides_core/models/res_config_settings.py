@@ -8,3 +8,5 @@ class ResConfigSettings(models.TransientModel):
     website_slides_create_user = fields.Boolean(
         string="Create user", config_parameter="channel.create_user",
     )
+
+    module_website_slides_edu = fields.Boolean(string="Edu")
