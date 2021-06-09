@@ -28,7 +28,7 @@
     "application": False,
     "installable": True,
     "external_dependencies": {"python": [], "bin": []},
-    "depends": ["website_slides_core", "openeducat_core"],
-    "data": ["views/slide_channel_views.xml"],
+    "depends": ["website_slides_core", "openeducat_core", "society_batch_core"],
+    "data": ["views/batch_students_view.xml", "views/slide_channel_views.xml"],
     "demo": [],
 }
