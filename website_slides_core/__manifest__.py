@@ -29,6 +29,9 @@
     "installable": True,
     "external_dependencies": {"python": [], "bin": []},
     "depends": ["website_slides"],
-    "data": ["views/res_config_settings_views.xml"],
+    "data": [
+        "views/res_config_settings_views.xml",
+        "views/website_slides_templates_lesson.xml",
+    ],
     "demo": [],
 }
