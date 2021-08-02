@@ -1,5 +1,4 @@
 from odoo import _
-from odoo import api
 from odoo import fields
 from odoo import models
 
@@ -18,7 +17,6 @@ class OpStudent(models.Model):
         "Course Count", compute="_compute_slide_channel_count"
     )
 
-    @api.depends("is_company")
     def _compute_slide_channel_count(self):
         student_courses = (
             self.env["slide.channel.partner"]
