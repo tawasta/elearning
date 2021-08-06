@@ -1,4 +1,7 @@
+from odoo import _
+from odoo import api
 from odoo import models
+from odoo.exceptions import Warning
 
 
 class SlideChannel(models.Model):
@@ -33,3 +36,17 @@ class SlideChannel(models.Model):
                         new_user.with_context(create_user=True).action_reset_password()
         else:
             return response
+
+    @api.onchange("product_id")
+    def _onchange_product_id(self):
+        allready_selected = (
+            self.env["slide.channel"]
+            .sudo()
+            .search([("product_id", "=", self.product_id.id)])
+        )
+        if allready_selected:
+            raise Warning(
+                _(
+                    "You cannot select that product because the product is already in use in another course. Choose another product or create a new one. "
+                )
+            )
