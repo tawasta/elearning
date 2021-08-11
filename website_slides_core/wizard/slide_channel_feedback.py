@@ -28,15 +28,16 @@ class SlideChannelFeedback(models.TransientModel):
         readonly=False,
         store=True,
     )
-    # attachment_ids = fields.Many2many('ir.attachment', string='Attachments')
+    attachment_ids = fields.Many2many("ir.attachment", string="Attachments")
     template_id = fields.Many2one(
         "mail.template",
         "Use template",
         domain="[('model', '=', 'slide.channel.partner')]",
+        readonly=True,
     )
     # recipients
     partner_ids = fields.Many2many(
-        "res.partner", string="Recipients", compute="_get_attendees"
+        "res.partner", string="Recipients", compute="_get_attendees", readonly=False,
     )
     # slide channel
     channel_id = fields.Many2one("slide.channel", string="Slide channel", required=True)
@@ -93,6 +94,7 @@ class SlideChannelFeedback(models.TransientModel):
                 "subject": self.subject,
                 "body_html": self.body,
                 "email_to": partner.email,
+                "attachment_ids": self.attachment_ids.ids,
             }
             message_template.sudo().write(mail_values)
             message_template.sudo().send_mail(channel_partner.id, force_send=True)
