@@ -68,7 +68,6 @@ class SlideChannel(models.Model):
             default_channel_id=self.id,
             default_use_template=bool(template),
             default_template_id=template and template.id or False,
-            # notif_layout='website_slides.mail_notification_channel_invite',
         )
         return {
             "type": "ir.actions.act_window",
