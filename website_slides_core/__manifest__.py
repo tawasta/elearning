@@ -30,8 +30,12 @@
     "external_dependencies": {"python": [], "bin": []},
     "depends": ["website_slides"],
     "data": [
+        "data/mail_data.xml",
+        "security/ir.model.access.csv",
         "views/res_config_settings_views.xml",
+        "views/slide_channel_views.xml",
         "views/website_slides_templates_lesson.xml",
+        "wizard/slide_channel_feedback_views.xml",
     ],
     "demo": [],
 }

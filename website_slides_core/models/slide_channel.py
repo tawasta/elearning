@@ -1,11 +1,16 @@
 from odoo import _
 from odoo import api
+from odoo import fields
 from odoo import models
 from odoo.exceptions import Warning
 
 
 class SlideChannel(models.Model):
     _inherit = "slide.channel"
+
+    feedback_survey_id = fields.Many2one(
+        string="Feedback survey", comodel_name="survey.survey"
+    )
 
     def _action_add_members(self, target_partners, **member_values):
         response = super(SlideChannel, self)._action_add_members(
@@ -50,3 +55,25 @@ class SlideChannel(models.Model):
                     "You cannot select that product because the product is already in use in another course. Choose another product or create a new one. "
                 )
             )
+
+    def action_channel_feedback(self):
+        self.ensure_one()
+        template = self.env.ref(
+            "website_slides_core.mail_template_slide_channel_feedback",
+            raise_if_not_found=False,
+        )
+
+        local_context = dict(
+            self.env.context,
+            default_channel_id=self.id,
+            default_use_template=bool(template),
+            default_template_id=template and template.id or False,
+            # notif_layout='website_slides.mail_notification_channel_invite',
+        )
+        return {
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "slide.channel.feedback",
+            "target": "new",
+            "context": local_context,
+        }
