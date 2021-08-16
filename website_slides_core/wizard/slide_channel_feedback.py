@@ -37,7 +37,7 @@ class SlideChannelFeedback(models.TransientModel):
     )
     # recipients
     partner_ids = fields.Many2many(
-        "res.partner", string="Recipients", compute="_get_attendees", readonly=False,
+        "res.partner", string="Recipients", compute="_get_attendees",
     )
     # slide channel
     channel_id = fields.Many2one("slide.channel", string="Slide channel", required=True)
@@ -96,7 +96,24 @@ class SlideChannelFeedback(models.TransientModel):
                 "email_to": partner.email,
                 "attachment_ids": self.attachment_ids.ids,
             }
+
+            subject = self.subject
+            body = self.body
             message_template.sudo().write(mail_values)
             message_template.sudo().send_mail(channel_partner.id, force_send=True)
+            print(message_template)
+            message = channel_partner.message_ids
+            print(message)
+
+            # channel_partner.message_post(body=self.body, subject=self.subject, subtype_xmlid='mail.mt_comment', partner_ids=[partner.id], attachment_ids=self.attachment_ids.ids)
+
+            channel_partner.with_context(mail_create_nosubscribe=True).message_post(
+                subject=subject,
+                body=body,
+                attachment_ids=self.attachment_ids.ids,
+                subtype_xmlid="website_slides.mail_template_slide_channel_feedback",
+                # email_layout_xmlid='mail.mail_notification_light',
+                # **kwargs,
+            )
 
         return {"type": "ir.actions.act_window_close"}

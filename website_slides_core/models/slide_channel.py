@@ -76,3 +76,8 @@ class SlideChannel(models.Model):
             "target": "new",
             "context": local_context,
         }
+
+
+class ChannelUsersRelation(models.Model):
+    _name = "slide.channel.partner"
+    _inherit = ["slide.channel.partner", "mail.thread"]
