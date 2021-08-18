@@ -39,14 +39,15 @@ class SlideChannel(models.Model):
 
     @api.onchange("product_id")
     def _onchange_product_id(self):
-        allready_selected = (
-            self.env["slide.channel"]
-            .sudo()
-            .search([("product_id", "=", self.product_id.id)])
-        )
-        if allready_selected:
-            raise Warning(
-                _(
-                    "You cannot select that product because the product is already in use in another course. Choose another product or create a new one. "
-                )
+        if self.product_id:
+            allready_selected = (
+                self.env["slide.channel"]
+                .sudo()
+                .search([("product_id", "=", self.product_id.id)])
             )
+            if allready_selected:
+                raise Warning(
+                    _(
+                        "You cannot select that product because the product is already in use in another course. Choose another product or create a new one. "
+                    )
+                )
