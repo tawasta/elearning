@@ -6,6 +6,7 @@ from odoo import _
 from odoo import api
 from odoo import fields
 from odoo import models
+from odoo.addons.mail.models import mail_template
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -87,8 +88,14 @@ class SlideChannelFeedback(models.TransientModel):
                 "attachment_ids": self.attachment_ids.ids,
             }
 
-            message_template.sudo().send_mail(
-                partner.id, email_values=mail_values, force_send=True
+            message_template.sudo().write(mail_values)
+
+            message_template.sudo().send_mail(partner.id, force_send=True)
+            partner.sudo().message_post(
+                subject=self.subject,
+                body=self.body,
+                notify_by_email=False,
+                attachment_ids=self.attachment_ids.ids,
             )
 
         return {"type": "ir.actions.act_window_close"}
