@@ -81,3 +81,4 @@ class SlideChannel(models.Model):
 class ChannelUsersRelation(models.Model):
     _name = "slide.channel.partner"
     _inherit = ["slide.channel.partner", "mail.thread"]
+    _rec_name = "partner_email"

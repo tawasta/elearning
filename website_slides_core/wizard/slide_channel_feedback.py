@@ -37,7 +37,7 @@ class SlideChannelFeedback(models.TransientModel):
     )
     # recipients
     partner_ids = fields.Many2many(
-        "res.partner", string="Recipients", compute="_get_attendees",
+        "slide.channel.partner", string="Recipients", compute="_get_attendees",
     )
     # slide channel
     channel_id = fields.Many2one("slide.channel", string="Slide channel", required=True)
@@ -62,7 +62,7 @@ class SlideChannelFeedback(models.TransientModel):
     def _get_attendees(self):
         for feedback in self:
             if feedback.template_id:
-                feedback.partner_ids = feedback.channel_id.partner_ids.ids
+                feedback.partner_ids = feedback.channel_id.channel_partner_ids.ids
             elif not feedback.body:
                 feedback.body = False
 
@@ -78,42 +78,17 @@ class SlideChannelFeedback(models.TransientModel):
 
         mail_values = []
         for partner in self.partner_ids:
-            channel_partner = (
-                self.env["slide.channel.partner"]
-                .sudo()
-                .search(
-                    [
-                        ("channel_id", "=", self.channel_id.id),
-                        ("partner_id", "=", partner.id),
-                    ]
-                )
-            )
             message_template = self.template_id
             mail_values = {
                 "email_from": self.env.user.email_formatted,
                 "subject": self.subject,
                 "body_html": self.body,
-                "email_to": partner.email,
+                "email_to": partner.partner_email,
                 "attachment_ids": self.attachment_ids.ids,
             }
 
-            subject = self.subject
-            body = self.body
-            message_template.sudo().write(mail_values)
-            message_template.sudo().send_mail(channel_partner.id, force_send=True)
-            print(message_template)
-            message = channel_partner.message_ids
-            print(message)
-
-            # channel_partner.message_post(body=self.body, subject=self.subject, subtype_xmlid='mail.mt_comment', partner_ids=[partner.id], attachment_ids=self.attachment_ids.ids)
-
-            channel_partner.with_context(mail_create_nosubscribe=True).message_post(
-                subject=subject,
-                body=body,
-                attachment_ids=self.attachment_ids.ids,
-                subtype_xmlid="website_slides.mail_template_slide_channel_feedback",
-                # email_layout_xmlid='mail.mail_notification_light',
-                # **kwargs,
+            message_template.sudo().send_mail(
+                partner.id, email_values=mail_values, force_send=True
             )
 
         return {"type": "ir.actions.act_window_close"}

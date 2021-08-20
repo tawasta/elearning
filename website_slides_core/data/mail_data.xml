@@ -38,7 +38,7 @@
                                                 <tr>
                                                     <td valign="top" style="font-size: 14px;">
                                                         <div>
-                                                            Hello ${object.name or ''},<br/>
+                                                            Hello ${object.partner_id.name or ''},<br/>
                                                             Thank you for attending the course. Please answer <a href="${object.channel_id.feedback_survey_id.survey_start_url}" style="color:#875A7B;text-decoration:none;">the feedback survey</a>
                                                         </div>
                                                     </td>

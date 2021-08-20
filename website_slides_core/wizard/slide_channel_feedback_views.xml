@@ -9,7 +9,7 @@
                     <group col="1">
                         <group col="2">
                             <field name="partner_ids"
-                                widget="many2many_tags_email"
+                                widget="many2many_tags"
                                 placeholder="Add existing contacts..."
                                 context="{'force_email':True, 'show_email':True, 'no_create_edit': True}"/>
                         </group>
