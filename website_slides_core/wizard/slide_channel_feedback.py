@@ -6,7 +6,6 @@ from odoo import _
 from odoo import api
 from odoo import fields
 from odoo import models
-from odoo.addons.mail.models import mail_template
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -79,23 +78,46 @@ class SlideChannelFeedback(models.TransientModel):
 
         mail_values = []
         for partner in self.partner_ids:
-            message_template = self.template_id
-            mail_values = {
-                "email_from": self.env.user.email_formatted,
-                "subject": self.subject,
-                "body_html": self.body,
-                "email_to": partner.partner_email,
-                "attachment_ids": self.attachment_ids.ids,
-            }
+            mail_values.append(self._add_mail_values(partner))
 
-            message_template.sudo().write(mail_values)
-
-            message_template.sudo().send_mail(partner.id, force_send=True)
-            partner.sudo().message_post(
-                subject=self.subject,
-                body=self.body,
-                notify_by_email=False,
-                attachment_ids=self.attachment_ids.ids,
-            )
+        for mail_value in mail_values:
+            new_mail = self.env["mail.mail"].sudo().create(mail_value)
+            if new_mail:
+                new_mail.send()
 
         return {"type": "ir.actions.act_window_close"}
+
+    def _add_mail_values(self, partner):
+
+        subject = self.env["mail.render.mixin"]._render_template(
+            self.subject, "slide.channel.partner", partner.ids, post_process=True
+        )[partner.id]
+        body = self.env["mail.render.mixin"]._render_template(
+            self.body, "slide.channel.partner", partner.ids, post_process=True
+        )[partner.id]
+
+        mail_values = {
+            "email_from": self.env.user.email_formatted,
+            "author_id": self.env.user.partner_id.id,
+            "model": "slide.channel.partner",
+            "res_id": partner.id,
+            "subject": subject,
+            "body_html": body,
+            "attachment_ids": [(4, att.id) for att in self.attachment_ids],
+            "auto_delete": True,
+            "recipient_ids": [(4, partner.partner_id.id)],
+        }
+        mail_values["body_html"] = self.env["mail.render.mixin"]._replace_local_links(
+            body
+        )
+
+        partner.sudo().message_post(
+            message_type="comment",
+            subtype_xmlid="mail.mt_note",
+            subject=subject,
+            body=body,
+            notify_by_email=False,
+            attachment_ids=self.attachment_ids.ids,
+        )
+
+        return mail_values
