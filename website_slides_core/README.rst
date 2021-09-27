@@ -6,7 +6,9 @@
 Website Slides Core
 ===================
 
-*
+* The product can only be selected for one course.
+* Added a feature to ask for feedback from course participants. "Ask Feedback" button in the course management view.
+* Possibility to decide whether to create a username for the participant or not.
 
 Configuration
 =============

@@ -6,7 +6,8 @@
 Website Slides Edu
 ==================
 
-*
+* If an batch has been added for the course, then a student record will be created for the participant and also student batch record.
+* Courses action button to the student view.
 
 Configuration
 =============
