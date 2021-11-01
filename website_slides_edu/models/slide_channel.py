@@ -16,11 +16,10 @@ class SlideChannelPartner(models.Model):
         if records.channel_id.batch_id:
             vals = {
                 "partner_id": records.partner_id.id,
-                "first_name": "Etunimi",
-                "last_name": "Sukunimi",
+                "first_name": records.partner_id.firstname,
+                "last_name": records.partner_id.lastname,
                 "email": records.partner_id.email,
                 "mobile": records.partner_id.phone,
-                "birth_date": "1995-01-01",
             }
             student_batch_vals = {
                 "batch_id": records.channel_id.batch_id.id,
