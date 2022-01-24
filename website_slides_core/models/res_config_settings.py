@@ -10,3 +10,5 @@ class ResConfigSettings(models.TransientModel):
     )
 
     module_website_slides_edu = fields.Boolean(string="Edu")
+
+    lms_sender_address = fields.Char(string="LMS sender address", config_parameter='lms_sender_address')

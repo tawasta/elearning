@@ -96,8 +96,12 @@ class SlideChannelFeedback(models.TransientModel):
             self.body, "slide.channel.partner", partner.ids, post_process=True
         )[partner.id]
 
+        email_from_value = self.env["ir.config_parameter"].get_param(
+            "lms_sender_address"
+        )
+
         mail_values = {
-            "email_from": self.env.user.email_formatted,
+            "email_from": email_from_value or self.env.user.email_formatted,
             "author_id": self.env.user.partner_id.id,
             "model": "slide.channel.partner",
             "res_id": partner.id,

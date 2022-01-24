@@ -29,6 +29,21 @@
                     </div>
                 </div>
             </xpath>
+            <xpath expr="//div[@id='elearning_selection_settings']" position="after">
+                <div class="row mt16 o_settings_container" name="elearning_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" id="elearning_sender_email">
+                        <div class="">
+                            <field name="lms_sender_address"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="lms_sender_address"/>
+                            <div class="text-muted">
+                                This email address will act as the sender for all elearning messages
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
         </field>
     </record>
 </odoo>
