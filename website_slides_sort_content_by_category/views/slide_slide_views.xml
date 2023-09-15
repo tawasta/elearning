@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="channel_id" position="after">
                 <field name="category_sort_id" />
+                <field name="sequence" invisible="1" />
             </field>
         </field>
     </record>

@@ -20,6 +20,19 @@ class SlideSlide(models.Model):
     @api.model
     def create(self, vals):
         category_sort_id = vals.get('category_sort_id')
-        category_sort_id = self.env['slide.slide'].browse(category_sort_id)
-        vals['sequence'] = category_sort_id.sequence + 1
+        if category_sort_id:
+            category_sort_id = self.env['slide.slide'].browse(category_sort_id)
+            vals['sequence'] = category_sort_id.sequence + 1
         return super().create(vals)
+
+    def write(self, vals):
+        res = super().write(vals)
+        category_sort_id = vals.get('category_sort_id')
+        if category_sort_id:
+            category_sort_id = self.env['slide.slide'].browse(category_sort_id)
+            vals['sequence'] = category_sort_id.sequence + 1
+        return res
+
+    @api.onchange('category_sort_id')
+    def onchange_category_sort_id(self):
+        self.sequence = self.category_sort_id.sequence + 1
