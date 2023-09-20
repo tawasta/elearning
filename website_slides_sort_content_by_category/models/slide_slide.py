@@ -6,7 +6,11 @@ class SlideSlide(models.Model):
 
     _inherit = 'slide.slide'
 
-    category_sort_id = fields.Many2one('slide.slide', string="Choose a section", store=True)
+    category_sort_id = fields.Many2one('slide.slide', string="Choose a section", store=True,
+            domain=lambda self: self.category_sort_id_domain())
+
+    def category_sort_id_domain(self):
+        return "[('is_category', '=', True), ('channel_id', '=', {})]".format(self.new().channel_id.id)
 
     @api.depends('channel_id.slide_ids.is_category', 'channel_id.slide_ids.sequence', 'category_sort_id')
     def _compute_category_id(self):
@@ -23,6 +27,15 @@ class SlideSlide(models.Model):
         if category_sort_id:
             category_sort_id = self.env['slide.slide'].browse(category_sort_id)
             vals['sequence'] = category_sort_id.sequence + 1
+
+        is_category = vals.get('is_category')
+        if is_category:
+            channel_id = vals.get('channel_id')
+            slides = self.env['slide.slide'].search([('channel_id', '=', channel_id)], order="sequence")
+            if slides:
+                # Negative values are possible
+                vals['sequence'] = slides[0].sequence - 1
+
         return super().create(vals)
 
     def write(self, vals):

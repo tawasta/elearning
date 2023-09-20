@@ -21,9 +21,9 @@
 {
     'name': 'Website Slides - Sort content by category',
     'summary': 'Website Slides - Sort content by category',
-    'version': '14.0.1.0.1',
+    'version': '14.0.1.0.3',
     'category': 'Document Management',
-    'website': 'https://tawasta.fi',
+    'website': 'https://gitlab.com/tawasta/odoo/elearning',
     'author': 'Tawasta',
     'license': 'AGPL-3',
     'application': False,
