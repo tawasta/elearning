@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="website_slides.view_slide_slide_form"/>
         <field name="arch" type="xml">
             <field name="channel_id" position="after">
-                <field name="category_id" readonly="False"/>
+                <field name="category_id" />
             </field>
         </field>
     </record>
