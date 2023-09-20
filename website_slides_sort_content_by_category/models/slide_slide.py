@@ -27,6 +27,15 @@ class SlideSlide(models.Model):
         if category_sort_id:
             category_sort_id = self.env['slide.slide'].browse(category_sort_id)
             vals['sequence'] = category_sort_id.sequence + 1
+
+        is_category = vals.get('is_category')
+        if is_category:
+            channel_id = vals.get('channel_id')
+            slides = self.env['slide.slide'].search([('channel_id', '=', channel_id)], order="sequence")
+            if slides:
+                # Negative values are possible
+                vals['sequence'] = slides[0].sequence - 1
+
         return super().create(vals)
 
     def write(self, vals):
