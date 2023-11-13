@@ -31,6 +31,9 @@ class SlidesChooseCategoryWizard(models.TransientModel):
 
         slides.write({'category_sort_id': self.category_sort_id.id})
 
+        for slide in slides:
+            slide.onchange_category_sort_id()
+
         # Recompute category_id of all slides
         all_slides = self.env['slide.slide'].search([])
         all_slides._compute_category_id()
