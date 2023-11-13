@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="website_slides.view_slide_slide_form"/>
         <field name="arch" type="xml">
             <field name="channel_id" position="after">
-                <field name="category_sort_id" options="{'no_quick_create': True}"/>
+                <field name="category_sort_id" options="{'no_quick_create': True}" domain="[('is_category', '=', True), ('channel_id', '=', channel_id)]" />
                 <field name="sequence" invisible="1" />
             </field>
         </field>
