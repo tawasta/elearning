@@ -6,11 +6,7 @@ class SlideSlide(models.Model):
 
     _inherit = 'slide.slide'
 
-    category_sort_id = fields.Many2one('slide.slide', string="Choose a section", store=True,
-            domain=lambda self: self.category_sort_id_domain())
-
-    def category_sort_id_domain(self):
-        return "[('is_category', '=', True), ('channel_id', '=', {})]".format(self.new().channel_id.id)
+    category_sort_id = fields.Many2one('slide.slide', string="Choose a section", store=True)
 
     @api.depends('channel_id.slide_ids.is_category', 'channel_id.slide_ids.sequence', 'category_sort_id')
     def _compute_category_id(self):
