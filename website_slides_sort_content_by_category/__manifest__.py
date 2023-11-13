@@ -21,7 +21,7 @@
 {
     'name': 'Website Slides - Sort content by category',
     'summary': 'Website Slides - Sort content by category',
-    'version': '14.0.1.0.5',
+    'version': '14.0.1.0.6',
     'category': 'Document Management',
     'website': 'https://gitlab.com/tawasta/odoo/elearning',
     'author': 'Tawasta',
