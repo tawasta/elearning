@@ -6,7 +6,8 @@
 Website Slides Vimeo support
 ============================
 
-Add Vimeo support for website slides
+Add Vimeo support for website slides. Backport from v17.
+This module is obsolete in v17 and can be trashed.
 
 Configuration
 =============

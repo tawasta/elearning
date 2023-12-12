@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Website Slides Vimeo support",
-    "summary": "Add Vimeo support for website slides",
+    "summary": "Add Vimeo support for website slides. Backport from v17",
     "version": "14.0.1.0.0",
     "category": "Website",
     "website": "https://gitlab.com/tawasta/odoo/elearning",
