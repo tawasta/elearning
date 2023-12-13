@@ -1,8 +1,5 @@
-from odoo import _
-from odoo import api
-from odoo import fields
-from odoo import models
-from odoo.exceptions import Warning
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SlideChannel(models.Model):
@@ -32,14 +29,14 @@ class SlideChannel(models.Model):
                         "login": r.partner_id.email,
                     }
                     partner_user = (
-                        r.partner_id.user_ids
-                        and r.partner_id.user_ids[0]
-                        or False
+                        r.partner_id.user_ids and r.partner_id.user_ids[0] or False
                     )
                     if not partner_user:
                         new_user = self.env["res.users"]._signup_create_user(values)
                         if new_user:
-                            new_user.with_context(create_user=True).action_reset_password()
+                            new_user.with_context(
+                                create_user=True
+                            ).action_reset_password()
             else:
                 return r
 
@@ -52,9 +49,11 @@ class SlideChannel(models.Model):
                 .search([("product_id", "=", self.product_id.id)])
             )
             if allready_selected:
-                raise Warning(
+                raise ValidationError(
                     _(
-                        "You cannot select that product because the product is already in use in another course. Choose another product or create a new one. "
+                        "You cannot select that product because "
+                        "the product is already in use in another course. "
+                        "Choose another product or create a new one. "
                     )
                 )
 

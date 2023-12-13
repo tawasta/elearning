@@ -1,5 +1,4 @@
-from odoo import fields
-from odoo import models
+from odoo import fields, models
 
 
 class SlideChannel(models.Model):
@@ -36,7 +35,5 @@ class SlideChannelPartner(models.Model):
                 create_student = self.env["op.student"].sudo().create(vals)
                 student_batch_vals.update({"student_id": create_student.id})
 
-            create_student_batch = (
-                self.env["op.batch.students"].sudo().create(student_batch_vals)
-            )
+            self.env["op.batch.students"].sudo().create(student_batch_vals)
         return records

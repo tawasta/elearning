@@ -1,20 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template
         id="slide_content_detailed"
         inherit_id="website_slides.slide_content_detailed"
-        >
-        <xpath
-            expr="//div[hasclass('o_wslides_js_course_join')]"
-            position="replace"
+    >
+        <xpath expr="//div[hasclass('o_wslides_js_course_join')]" position="replace">
+            <div
+                class="col-12 col-md d-flex align-items-start mb-4 mb-md-0 o_wslides_js_course_join"
+                t-if="slide._has_additional_resources()"
             >
-            <div class="col-12 col-md d-flex align-items-start mb-4 mb-md-0 o_wslides_js_course_join" t-if="slide._has_additional_resources()">
-                <span t-if="slide.channel_id.is_member or slide.channel_id.can_publish or slide.is_preview or slide.channel_id.enroll in ['private', 'payment', 'public']" class="text-muted font-weight-bold mr-3">
+                <span
+                    t-if="slide.channel_id.is_member or slide.channel_id.can_publish or slide.is_preview or slide.channel_id.enroll in ['private', 'payment', 'public']"
+                    class="text-muted font-weight-bold mr-3"
+                >
                     Additional Resources
                 </span>
-                <div t-if="slide.channel_id.is_member or slide.channel_id.can_publish or slide.channel_id.enroll == 'public'" class="text-muted mr-auto border-left pl-3">
+                <div
+                    t-if="slide.channel_id.is_member or slide.channel_id.can_publish or slide.channel_id.enroll == 'public'"
+                    class="text-muted mr-auto border-left pl-3"
+                >
                     <t t-foreach="slide.slide_resource_ids" t-as="resource">
-                        <a t-attf-href="/web/content/slide.slide.resource/#{resource.id}/data?download=true" t-esc="resource.name"/><br />
+                        <a
+                            t-attf-href="/web/content/slide.slide.resource/#{resource.id}/data?download=true"
+                            t-esc="resource.name"
+                        /><br />
                     </t>
                 </div>
             </div>
