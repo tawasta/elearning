@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_slide_slide_form_description" model="ir.ui.view">
             <field name="name">slide.slide.form.description</field>
             <field name="model">slide.slide</field>
-            <field name="inherit_id" ref="website_slides.view_slide_slide_form"/>
+            <field name="inherit_id" ref="website_slides.view_slide_slide_form" />
             <field name="arch" type="xml">
                 <field name="description" position="after">
-                    <field name="website_description"/>
+                    <field name="website_description" />
                 </field>
             </field>
         </record>
@@ -14,13 +14,14 @@
     <template
         id="slide_content_detailed"
         inherit_id="website_slides.slide_content_detailed"
-        >
-        <xpath
-            expr="//div[@id='about']"
-            position="replace"
+    >
+        <xpath expr="//div[@id='about']" position="replace">
+            <div
+                role="tabpanel"
+                t-att-class="not comments and 'tab-pane fade in show active' or 'tab-pane fade'"
+                id="about"
             >
-            <div role="tabpanel" t-att-class="not comments and 'tab-pane fade in show active' or 'tab-pane fade'" id="about">
-                <div t-field="slide.website_description"/>
+                <div t-field="slide.website_description" />
             </div>
         </xpath>
     </template>

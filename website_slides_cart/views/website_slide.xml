@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="assets_frontend" inherit_id="web.assets_frontend">
         <xpath expr="." position="inside">
-            <script type="text/javascript" src="/website_slides_cart/static/src/js/courses.js" />
+            <script
+                type="text/javascript"
+                src="/website_slides_cart/static/src/js/courses.js"
+            />
         </xpath>
     </template>
     <template
@@ -10,22 +13,42 @@
         inherit_id="website_slides.course_card"
         name="Course card"
         customize_show="True"
-        >
-        <xpath
-            expr="//div[hasclass('card-footer')]"
-            position="inside"
-            >
+    >
+        <xpath expr="//div[hasclass('card-footer')]" position="inside">
             <t t-if="not channel.is_member and channel.product_id">
                 <div class="add_to_cart_button">
                     <form action="/shop/cart/update" method="POST">
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                        <input type="hidden" class="product_id" name="product_id" t-att-value="channel.product_id.id"/>
-                        <input type="hidden" name="return_course_url" t-att-value="request.httprequest.path"/>
-                        <input type="hidden" class="product_template_id" name="product_template_id" t-att-value="channel.product_id.id"/>
-                        <a id="add_to_cart" role="button" class="btn btn-primary btn-block js_check_product o_js_add_to_cart add_to_cart a-submit" href="#">
-                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+                        <input
+                            type="hidden"
+                            class="product_id"
+                            name="product_id"
+                            t-att-value="channel.product_id.id"
+                        />
+                        <input
+                            type="hidden"
+                            name="return_course_url"
+                            t-att-value="request.httprequest.path"
+                        />
+                        <input
+                            type="hidden"
+                            class="product_template_id"
+                            name="product_template_id"
+                            t-att-value="channel.product_id.id"
+                        />
+                        <a
+                            id="add_to_cart"
+                            role="button"
+                            class="btn btn-primary btn-block js_check_product o_js_add_to_cart add_to_cart a-submit"
+                            href="#"
+                        >
+                            <i class="fa fa-shopping-cart" /> Add to Cart
                         </a>
-                        <div id="product_option_block"/>
+                        <div id="product_option_block" />
                     </form>
                 </div>
             </t>

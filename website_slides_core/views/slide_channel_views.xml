@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_slide_channel_form" model="ir.ui.view">
         <field name="name">slide.channel.view.form.feedback.inherit</field>
         <field name="model">slide.channel</field>
-        <field name="inherit_id" ref="website_slides.view_slide_channel_form"/>
+        <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                <button name="action_channel_feedback" string="Ask feedback" type="object" class="oe_highlight" />
+                <button
+                    name="action_channel_feedback"
+                    string="Ask feedback"
+                    type="object"
+                    class="oe_highlight"
+                />
             </xpath>
             <field name="website_id" position="after">
                 <field name="feedback_survey_id" />

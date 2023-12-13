@@ -2,10 +2,7 @@
 import logging
 import re
 
-from odoo import _
-from odoo import api
-from odoo import fields
-from odoo import models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -37,7 +34,9 @@ class SlideChannelFeedback(models.TransientModel):
     )
     # recipients
     partner_ids = fields.Many2many(
-        "slide.channel.partner", string="Recipients", compute="_get_attendees",
+        "slide.channel.partner",
+        string="Recipients",
+        compute="_compute_attendee_ids",
     )
     # slide channel
     channel_id = fields.Many2one("slide.channel", string="Slide channel", required=True)
@@ -59,7 +58,7 @@ class SlideChannelFeedback(models.TransientModel):
                 feedback.body = False
 
     @api.depends("template_id")
-    def _get_attendees(self):
+    def _compute_attendee_ids(self):
         for feedback in self:
             if feedback.template_id:
                 feedback.partner_ids = feedback.channel_id.channel_partner_ids.ids
