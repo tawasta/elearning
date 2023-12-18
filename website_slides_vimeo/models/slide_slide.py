@@ -35,6 +35,10 @@ class Slide(models.Model):
         readonly=False,
         help="Link of the video (we support YouTube, Google Drive and Vimeo as sources)",
     )
+    document_id_helper = fields.Text(
+        "Embed code helper", compute="_compute_document_id_helper"
+    )
+
     embed_code_external = fields.Html(
         "External Embed Code",
         readonly=True,
@@ -43,7 +47,7 @@ class Slide(models.Model):
         help="Same as 'Embed Code' but used to embed the content on an external website.",
     )
 
-    @api.depends("video_url")
+    @api.depends("url")
     def _compute_video_source_type(self):
         for slide in self:
             video_source_type = False
@@ -111,11 +115,12 @@ class Slide(models.Model):
 
             return res
 
+    @api.onchange("url", "slide_type")
     @api.depends("url", "slide_type")
     def _compute_vimeo_id(self):
         for slide in self:
-            if slide.video_url and slide.video_source_type == "vimeo":
-                match = re.search(self.VIMEO_VIDEO_ID_REGEX, slide.video_url)
+            if slide.url and slide.video_source_type == "vimeo":
+                match = re.search(self.VIMEO_VIDEO_ID_REGEX, slide.url)
                 if match and len(match.groups()) == 3:
                     if match.group(3):
                         # in case of privacy 'with URL only',
