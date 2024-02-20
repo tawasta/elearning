@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_slide_slide_resource_all,access_slide_slide_resource_all,website_slides.model_slide_slide_resource,,1,0,0,0

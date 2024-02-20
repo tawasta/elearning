@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_slides.choose.category.wizard,access_slides.choose.category.wizard,model_slides_choose_category_wizard,website_slides.group_website_slides_manager,1,1,1,0
