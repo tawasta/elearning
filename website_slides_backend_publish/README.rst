@@ -6,7 +6,7 @@
 Website Slides backend publish
 ==============================
 
-Publish slides from backend
+Publish slides/channel from backend
 
 Configuration
 =============
@@ -27,6 +27,7 @@ Contributors
 ------------
 
 * Jarmo Kortetjärvi <jarmo.kortetjarvi@tawasta.fi>
+* Valtteri Lattu <valtteri.lattu@tawasta.fi>
 
 Maintainer
 ----------
