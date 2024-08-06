@@ -1,1 +1,3 @@
 from . import slides_choose_category_wizard
+from . import channels_reorder_categories_wizard
+from . import channels_reorder_categories_wizard_category
