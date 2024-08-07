@@ -6,7 +6,11 @@
 Website Slides - Sort content by category
 =========================================
 
-Website Slides - Sort content by category
+* Provides more convenient categorizing and sorting functionalities
+  for slides
+  
+  * Mass moving multiple slides to under a different category
+  * Mass changing the order of a courses' categories
 
 Configuration
 =============
@@ -14,7 +18,10 @@ Configuration
 
 Usage
 =====
-\-
+* In Contents list view, select some contents and click Action -> Set a New Category 
+  to launch the category setting wizard for those records
+* In Course form view, click Action -> Reorder Channel's Categories to launch the 
+  category reordering wizard
 
 Known issues / Roadmap
 ======================
@@ -27,6 +34,7 @@ Contributors
 ------------
 
 * Timo Kekäläinen <timo.kekalainen@tawasta.fi>
+* Timo Talvitie <timo.talvitie@tawasta.fi>
 
 Maintainer
 ----------

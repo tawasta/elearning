@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_reorder_channel_categories_wizard_form" model="ir.ui.view">
+        <field name="model">channels.reorder.categories.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reorder Channel Categories wizard">
+
+                <p>Drag the categories below to set their new order. </p>
+
+                <group>
+                    <field name="category_ids" nolabel="1" limit="0">
+                        <tree>
+                            <field name="sequence" widget="handle" />
+                            <field name="original_name" />
+                            <field name="original_sequence" invisible="1" />
+                            <field name="original_id" invisible="1" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Confirm Reordering"
+                        type="object"
+                        class="oe_highlight"
+                        name="confirm"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_reorder_channel_categories_wizard" model="ir.actions.act_window">
+        <field name="name">Reorder Channel's Categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">channels.reorder.categories.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+        <field name="binding_model_id" ref="website_slides.model_slide_channel" />
+    </record>
+</odoo>
