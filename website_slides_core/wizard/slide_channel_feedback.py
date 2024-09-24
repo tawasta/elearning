@@ -87,12 +87,17 @@ class SlideChannelFeedback(models.TransientModel):
         return {"type": "ir.actions.act_window_close"}
 
     def _add_mail_values(self, partner):
-
         subject = self.env["mail.render.mixin"]._render_template(
-            self.subject, "slide.channel.partner", partner.ids, options={'post_process': True}
+            self.subject,
+            "slide.channel.partner",
+            partner.ids,
+            options={"post_process": True},
         )[partner.id]
         body = self.env["mail.render.mixin"]._render_template(
-            self.body, "slide.channel.partner", partner.ids, options={'post_process': True}
+            self.body,
+            "slide.channel.partner",
+            partner.ids,
+            options={"post_process": True},
         )[partner.id]
 
         mail_values = {

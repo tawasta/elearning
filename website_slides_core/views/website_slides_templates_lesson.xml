@@ -6,6 +6,7 @@
         active="False"
         customize_show="True"
         name="Move the about tab to the top of the page"
+        priority="99"
     >
         <xpath expr="//a[@aria-controls='about']" position="replace" />
         <xpath expr="//div[@id='about']" position="replace" />

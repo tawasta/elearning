@@ -9,11 +9,19 @@
                 <setting>
                     <div class="content-group">
                         <div class="row mt8">
-                            <label class="col-lg-3" string="Create user when _action_add_members function is called" for="website_slides_create_user"/>
+                            <label
+                                class="col-lg-3"
+                                string="Create user when _action_add_members function is called"
+                                for="website_slides_create_user"
+                            />
                             <field name="website_slides_create_user" />
                         </div>
                         <div class="row mt8">
-                            <label class="col-lg-3" string="Edu" for="module_website_slides_edu"/>
+                            <label
+                                class="col-lg-3"
+                                string="Edu"
+                                for="module_website_slides_edu"
+                            />
                             <field name="module_website_slides_edu" />
                         </div>
                     </div>
