@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="channel_buy" inherit_id="website_slides_cart.channel_buy">
+        <xpath expr="//div[@class='add_to_cart_button']" position="attributes">
+            <attribute name="t-if">not website.is_public_user()</attribute>
+        </xpath>
+
+        <xpath expr="//div[@class='add_to_cart_button']" position="after">
+            <t t-call="website_sale_force_login.product_login_buttons" />
+        </xpath>
+
+    </template>
+
+    <template
+        id="course_buy_course_button"
+        inherit_id="website_sale_slides.course_buy_course_button"
+    >
+        <xpath expr="//div[@class='add_to_cart_button']" position="attributes">
+            <attribute name="t-if">not website.is_public_user()</attribute>
+        </xpath>
+
+        <xpath expr="//div[@class='add_to_cart_button']" position="after">
+            <t t-call="website_sale_force_login.product_login_buttons" />
+        </xpath>
+    </template>
+
+</odoo>
