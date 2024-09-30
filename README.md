@@ -10,6 +10,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[website_sale_slides_force_login](website_sale_slides_force_login/) | 17.0.1.0.0 |  | Force login before bying course content
 [website_slides_backend_publish](website_slides_backend_publish/) | 17.0.1.0.0 |  | Publish slides from backend
 [website_slides_cart](website_slides_cart/) | 17.0.1.0.0 |  | Website Slides Cart
 [website_slides_core](website_slides_core/) | 17.0.1.0.0 |  | Website Slides Core
