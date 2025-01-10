@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_slide_slide_form_inherit" model="ir.ui.view">
+        <field name="name">slide.slide.form.mail.activity.mixin.support</field>
+        <field name="model">slide.slide</field>
+        <field name="inherit_id" ref="website_slides.view_slide_slide_form" />
+        <field name="arch" type="xml">
+            <field name="message_follower_ids" position="after">
+                <field name="activity_ids" />
+            </field>
+        </field>
+    </record>
+</odoo>
