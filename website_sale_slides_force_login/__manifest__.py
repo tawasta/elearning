@@ -23,7 +23,7 @@
     "summary": "Force login before bying course content",
     "version": "17.0.1.0.0",
     "category": "Website",
-    "website": "https://gitlab.com/tawasta/odoo/elearning",
+    "website": "https://github.com/tawasta/elearning",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
