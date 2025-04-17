@@ -5,12 +5,13 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class Channel(models.Model):
-    _inherit = 'slide.channel'
+    _inherit = "slide.channel"
 
     paywall_domain = fields.Char(
         string="Paywall Domain",
-        help="Comma-separated domains for which this ticket is visible."
+        help="Comma-separated domains for which this ticket is visible.",
     )
 
     user_in_paywall_domain = fields.Boolean(
@@ -35,16 +36,17 @@ class Channel(models.Model):
                 record.user_in_paywall_domain = False
 
     def _search_render_results(self, fetch_fields, mapping, icon, limit):
-        results_data = super()._search_render_results(fetch_fields, mapping, icon, limit)
+        results_data = super()._search_render_results(
+            fetch_fields, mapping, icon, limit
+        )
         # Haetaan kaikki channel-id:t tuloksista
-        result_ids = [r['id'] for r in results_data]
+        result_ids = [r["id"] for r in results_data]
         # Ladataan ne channel-recordit ORM:llä
         channels = self.browse(result_ids).filtered(
             lambda c: not c.paywall_domain or c.user_in_paywall_domain
         )
         allowed_ids = set(channels.ids)
         # Suodatetaan pois ne dictit, joiden id ei ole allowed_ids-joukossa
-        filtered_results = [r for r in results_data if r['id'] in allowed_ids]
+        filtered_results = [r for r in results_data if r["id"] in allowed_ids]
 
         return filtered_results
-

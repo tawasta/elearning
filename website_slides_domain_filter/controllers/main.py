@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 
 from odoo import http
@@ -10,17 +9,20 @@ _logger = logging.getLogger(__name__)
 
 
 class WebsiteSlidesPaywall(WebsiteSlides):
-
-    def slides_channel_all_values(self, slide_category=None, slug_tags=None, my=False, **post):
+    def slides_channel_all_values(
+        self, slide_category=None, slug_tags=None, my=False, **post
+    ):
         """
         Override default slide channel list logic to hide channels behind a paywall
         if user does not have access.
         """
-        values = super().slides_channel_all_values(slide_category, slug_tags, my, **post)
+        values = super().slides_channel_all_values(
+            slide_category, slug_tags, my, **post
+        )
 
         # Suodata pois kanavat, joihin käyttäjällä ei ole pääsyä
-        channels = values.get('channels', request.env['slide.channel'])
-        values['channels'] = channels.filtered(
+        channels = values.get("channels", request.env["slide.channel"])
+        values["channels"] = channels.filtered(
             lambda c: not c.paywall_domain or c.user_in_paywall_domain
         )
 
@@ -47,14 +49,13 @@ class WebsiteSlidesPaywall(WebsiteSlides):
 
         return response
 
-
     @http.route()
     def channel(self, channel=False, channel_id=False, **kw):
         """
         Override channel route to block access to paywalled channels if user lacks access.
         """
         if channel_id and not channel:
-            channel = request.env['slide.channel'].browse(channel_id).exists()
+            channel = request.env["slide.channel"].browse(channel_id).exists()
 
         if channel and channel.paywall_domain and not channel.user_in_paywall_domain:
             raise NotFound()
