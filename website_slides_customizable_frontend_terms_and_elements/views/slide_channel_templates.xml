@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="courses_home" inherit_id="website_slides.courses_home" priority="101">
+
+        <!-- Search Courses searchbox placeholder -->
+        <xpath expr="//t[@t-set='placeholder']" position="replace">
+            <t t-set="placeholder"><t
+                    t-esc="website.slide_channel_search_field_placeholder_term"
+                /></t>
+        </xpath>
+
+        <!-- All Courses breadcrumb -->
+        <xpath
+            expr="//div[@id='navbarSlidesHomepage']//a[@href='/slides/all']"
+            position="replace"
+        >
+            <a
+                class="nav-link nav-link me-md-2 o_wslides_home_all_slides"
+                href="/slides/all"
+            ><i class="fa fa-graduation-cap me-1" /><t
+                    t-esc="website.slide_channel_all_slides_link_term"
+                /></a>
+        </xpath>
+
+        <!-- Profile/achievements/etc right sidebar -->
+        <xpath
+            expr="//div[hasclass('o_wslides_home_aside_title')]"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not website.slide_channel_hide_aside_content</attribute>
+        </xpath>
+
+        <xpath
+            expr="//t[@t-call='website_slides.slides_home_user_profile_small']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not website.slide_channel_hide_aside_content</attribute>
+        </xpath>
+
+        <xpath
+            expr="//t[@t-call='website_slides.slides_home_user_achievements_small']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not website.slide_channel_hide_aside_content</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='website_slides.slides_home_achievements_small']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not website.slide_channel_hide_aside_content</attribute>
+        </xpath>
+
+        <xpath
+            expr="//t[@t-call='website_slides.slides_home_users_small']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >not website.slide_channel_hide_aside_content</attribute>
+        </xpath>
+    </template>
+
+
+    <template id="courses_all" inherit_id="website_slides.courses_all" priority="101">
+
+        <!-- Search Courses searchbox placeholder -->
+        <xpath expr="(//t[@t-set='placeholder'])[1]" position="replace">
+            <t t-set="placeholder">
+                <t t-esc="website.slide_channel_search_field_placeholder_term" />
+            </t>
+        </xpath>
+
+        <xpath expr="(//t[@t-set='placeholder'])[2]" position="replace">
+            <t t-set="placeholder"><t
+                    t-esc="website.slide_channel_search_field_placeholder_term"
+                /></t>
+        </xpath>
+
+
+        <!-- 'Your Level' tag dropdown -->
+        <xpath
+            expr="//button[@data-bs-target='#navbarTagGroups']"
+            position="attributes"
+        >
+            <attribute name="t-if">not website.slide_channel_hide_tag_groups</attribute>
+        </xpath>
+
+        <xpath expr="//div[@id='navbarTagGroups']" position="attributes">
+            <attribute name="t-if">not website.slide_channel_hide_tag_groups</attribute>
+        </xpath>
+
+    </template>
+
+
+    <template id="course_nav" inherit_id="website_slides.course_nav" priority="101">
+
+        <!-- 'Courses' breadcrumb item -->
+        <xpath expr="//nav//a[@href='/slides']" position="replace">
+            <a href="/slides" t-att-title="website.slide_channel_breadcrumb_term"><t
+                    t-esc="website.slide_channel_breadcrumb_term"
+                /></a>
+        </xpath>
+
+        <!-- Search Courses searchbox placeholder -->
+        <xpath expr="(//t[@t-set='placeholder'])[1]" position="replace">
+            <t t-set="placeholder"><t
+                    t-esc="website.slide_channel_search_field_placeholder_term"
+                /></t>
+        </xpath>
+
+        <xpath expr="(//t[@t-set='placeholder'])[2]" position="replace">
+            <t t-set="placeholder"><t
+                    t-esc="website.slide_channel_search_field_placeholder_term"
+                /></t>
+        </xpath>
+    </template>
+
+
+    <template id="course_main" inherit_id="website_slides.course_main">
+        <!-- Channel left sidebar -->
+        <xpath
+            expr="//t[@t-call='website_slides.course_sidebar']"
+            position="attributes"
+        >
+            <attribute name="t-if">not channel.hide_course_sidebar </attribute>
+        </xpath>
+    </template>
+
+
+    <template id="course_slides_list" inherit_id="website_slides.course_slides_list">
+        <!-- Channel's content list: hide lesson count and completion time from section headers -->
+        <xpath expr="(//t[@t-if='category_id']/div)[2]" position="attributes">
+            <attribute
+                name="t-if"
+            >not channel.hide_section_lesson_count_and_completion_time</attribute>
+        </xpath>
+    </template>
+
+
+    <template
+        id="slide_fullscreen"
+        inherit_id="website_slides.slide_fullscreen"
+        priority="101"
+    >
+
+        <!-- Fullscreen viewer: Lessons at top left -->
+        <xpath
+            expr="//div[hasclass('o_wslides_slide_fs_header')]//a[hasclass('o_wslides_fs_toggle_sidebar')]/span"
+            position="replace"
+        >
+            <span class="d-none d-md-inline-block ms-1"><t
+                    t-esc="channel.fullscreen_menu_lessons_term"
+                /></span>
+        </xpath>
+
+        <!-- Fullscreen viewer: Back to course at top right -->
+        <xpath
+            expr="//div[hasclass('o_wslides_slide_fs_header')]/div[2]/a[3]/span"
+            position="replace"
+        >
+            <span class="d-none d-md-inline-block ms-1"><t
+                    t-esc="channel.fullscreen_menu_back_to_course_term"
+                /></span>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,27 @@
+<odoo>
+    <record id="view_website_form_inherit" model="ir.ui.view">
+        <field name="name">website.form.inherit.website.slides.terms</field>
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page
+                    string="eLearning Terms and Elements"
+                    name="elearning_terminology"
+                >
+                    <group>
+                        <group string="Terms">
+                            <field name="slide_channel_search_field_placeholder_term" />
+                            <field name="slide_channel_all_slides_link_term" />
+                            <field name="slide_channel_breadcrumb_term" />
+                        </group>
+                        <group string="Element Visibility">
+                            <field name="slide_channel_hide_tag_groups" />
+                            <field name="slide_channel_hide_aside_content" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

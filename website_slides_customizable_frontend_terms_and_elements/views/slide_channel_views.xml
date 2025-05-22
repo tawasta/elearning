@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_slide_channel_form_inherit" model="ir.ui.view">
+        <field name="name">slide.channel.view.form.inherit.website.slides.terms</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='display']" position="inside">
+                <field name="fullscreen_menu_lessons_term" />
+                <field name="fullscreen_menu_back_to_course_term" />
+                <field name="hide_course_sidebar" />
+                <field name="hide_section_lesson_count_and_completion_time" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
