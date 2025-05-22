@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_slides_customizable_frontend_terms_and_elements
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-22 11:02+0000\n"
+"PO-Revision-Date: 2025-05-22 11:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_back_to_course_term
+msgid "Back to Course Term in Fullscreen Viewer"
+msgstr "Takaisin kurssile -termi koko näytön tilassa"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model,name:website_slides_customizable_frontend_terms_and_elements.model_slide_channel
+msgid "Course"
+msgstr "Kurssi"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model_terms:ir.ui.view,arch_db:website_slides_customizable_frontend_terms_and_elements.view_website_form_inherit
+msgid "Element Visibility"
+msgstr "Elementtien näkyvyys"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar
+msgid "Hide Course's Sidebar"
+msgstr "Piilota kurssin sivupalkki"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_section_lesson_count_and_completion_time
+msgid "Hide Lesson Count and Completion Time from Course Sections"
+msgstr "Piilota oppituntien määrä ja suoritusaika kurssien osioista"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_hide_aside_content
+msgid "Hide Sidebar with Profile, Badges etc."
+msgstr "Piilota sivupalkki, jossa profiili, ansiomerkit ym."
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_hide_tag_groups
+msgid "Hide Tag Group Drowdown"
+msgstr "Piilotta tagiryhmän alasvetovalikko"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_hide_tag_groups
+msgid "Hide the dropdown that contains by default 'Your Level' related tags"
+msgstr "Piilota alasvetovalikko, jossa näkyy oletuksena 'Tasosi' -ryhmän tageja"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_hide_aside_content
+msgid "Hide the right sidebar contents from courses homepage"
+msgstr "Piilota oikean sivupalkin sisällöt kurssien etusivulta"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_section_lesson_count_and_completion_time
+msgid "Hides the '1h 45min' and 'x Lessons' text from section headers"
+msgstr "Piilottaa '1h 45min' ja 'x oppitunnit' -tekstit osioiden otsikoista"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar
+msgid "Hides the left sidebar with Last updated, Responsible person etc. info"
+msgstr "Piilottaa vasemman sivupalkin, jossa mm. Viimeinen päivitys, Vastuuhenkilö ym. tietoja"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_lessons_term
+msgid "Lessons List Term in Fullscreen Viewer"
+msgstr "Oppitunnit-termi koko näytön tilassa"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_search_field_placeholder_term
+msgid "Override the default 'Search courses...'"
+msgstr "Korvaa oletustermi 'Etsi kursseja'"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_breadcrumb_term
+msgid "Override the default breadcrumb item 'Courses'"
+msgstr "Korvaa murupolun oletustermi 'Kurssit'"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_all_slides_link_term
+msgid "Override the default link text 'All courses' in eLearning home view"
+msgstr "Korvaa oletuslinkkiteksti 'Kaikki kurssit' verkko-oppimisen kotinäkymässä"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_back_to_course_term
+msgid ""
+"Override the default term 'Back to Course' at top right of fullscreen viewer"
+msgstr ""
+"Korvaa 'Takaisin kurssille' -oletustermi koko näytön tilan oikeassa yläkulmassa"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_lessons_term
+msgid "Override the default term 'Lessons' at top left of fullscreen viewer"
+msgstr ""
+"Korvaa 'Oppitunnit' -oletustermi koko näytön tilan vasemmassa yläkulmassa"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model_terms:ir.ui.view,arch_db:website_slides_customizable_frontend_terms_and_elements.view_website_form_inherit
+msgid "Terms"
+msgstr "Termit"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model,name:website_slides_customizable_frontend_terms_and_elements.model_website
+msgid "Website"
+msgstr "Verkkosivu"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_breadcrumb_term
+msgid "eLearning Breadcrumb Term"
+msgstr "eLearning: murupolun termi"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_all_slides_link_term
+msgid "eLearning Home All Slides Term"
+msgstr "eLearning: Kaikki kurssit -termi"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_search_field_placeholder_term
+msgid "eLearning Search Field Placeholder Term"
+msgstr "eLearning: hakukentän placeholder"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model_terms:ir.ui.view,arch_db:website_slides_customizable_frontend_terms_and_elements.view_website_form_inherit
+msgid "eLearning Terms and Elements"
+msgstr "eLearning: Termit ja Elementit"
