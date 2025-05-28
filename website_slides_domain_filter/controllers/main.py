@@ -8,7 +8,7 @@ from werkzeug.exceptions import NotFound
 _logger = logging.getLogger(__name__)
 
 
-class WebsiteSlidesPaywall(WebsiteSlides):
+class WebsiteSlidesFilter(WebsiteSlides):
     def slides_channel_all_values(
         self, slide_category=None, slug_tags=None, my=False, **post
     ):
@@ -22,9 +22,7 @@ class WebsiteSlidesPaywall(WebsiteSlides):
 
         # Suodata pois kanavat, joihin käyttäjällä ei ole pääsyä
         channels = values.get("channels", request.env["slide.channel"])
-        values["channels"] = channels.filtered(
-            lambda c: not c.paywall_domain or c.user_in_paywall_domain
-        )
+        values["channels"] = channels.filtered(lambda c: c.user_in_partner_domain)
 
         return values
 
@@ -36,15 +34,15 @@ class WebsiteSlidesPaywall(WebsiteSlides):
         values = response.qcontext
 
         values["channels_my"] = values["channels_my"].filtered(
-            lambda c: not c.paywall_domain or c.user_in_paywall_domain
+            lambda c: c.user_in_partner_domain
         )
 
         values["channels_popular"] = values["channels_popular"].filtered(
-            lambda c: not c.paywall_domain or c.user_in_paywall_domain
+            lambda c: c.user_in_partner_domain
         )
 
         values["channels_newest"] = values["channels_newest"].filtered(
-            lambda c: not c.paywall_domain or c.user_in_paywall_domain
+            lambda c: c.user_in_partner_domain
         )
 
         return response
@@ -52,12 +50,12 @@ class WebsiteSlidesPaywall(WebsiteSlides):
     @http.route()
     def channel(self, channel=False, channel_id=False, **kw):
         """
-        Override channel route to block access to paywalled channels if user lacks access.
+        Override channel route to block access to filtered channels if user lacks access.
         """
         if channel_id and not channel:
             channel = request.env["slide.channel"].browse(channel_id).exists()
 
-        if channel and channel.paywall_domain and not channel.user_in_paywall_domain:
+        if channel and not channel.user_in_partner_domain:
             raise NotFound()
 
         return super().channel(channel=channel, channel_id=channel_id, **kw)

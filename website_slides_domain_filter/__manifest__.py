@@ -21,7 +21,7 @@
 {
     "name": "Website Slides Domain Filter",
     "summary": "Show website slides only to users matching a partner domain.",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.2.0",
     "category": "Elearning",
     "website": "https://github.com/tawasta/elearning",
     "author": "Futural",

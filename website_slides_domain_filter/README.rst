@@ -12,7 +12,7 @@ Users will only see courses (channels) if their partner record matches the defin
 Features
 ========
 
-* Add a domain (`paywall_domain`) per course (channel)
+* Add a domain per course (channel)
 * Users only see courses if their `res.partner` matches the domain
 * Filters course visibility in:
   * Slide home page (`/slides`)
@@ -24,19 +24,17 @@ Usage
 =====
 
 1. Go to **eLearning → Courses**
-2. Open any course and add a `Paywall Domain` using the domain editor
-   e.g., `[('country_id.code', '=', 'FI')]`
+2. Open any course and add a `Partner filters`
 3. Frontend visibility will automatically be filtered:
    * Courses are hidden from list pages, search results, and direct access
 
 Technical details
 =================
 
-* `paywall_domain`: Char field, parsed using `safe_eval()`
-* `user_in_paywall_domain`: computed Boolean based on the current user
+* `user_in_partner_domain`: computed Boolean based on the current user
 * Slide controller (`/slides`) is overridden to filter `channel.home` and `channel`
 * Autocomplete results are filtered at render time
-* XML inherits the form view to include the `paywall_domain` field with proper widget
+* XML inherits the form view to include the `partner_domain_filter_ids` field with proper widget
 
 
 Known issues / Roadmap
@@ -50,6 +48,7 @@ Contributors
 ------------
 
 * Valtteri Lattu <valtteri.lattu@futural.fi>
+* Jarmo Kortetjärvi <jarmo.kortetjarvi@futural.fi>
 
 Maintainer
 ----------
