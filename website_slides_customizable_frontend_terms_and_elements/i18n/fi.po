@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0-20250428\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 11:02+0000\n"
-"PO-Revision-Date: 2025-05-22 11:02+0000\n"
+"POT-Creation-Date: 2025-06-05 13:02+0000\n"
+"PO-Revision-Date: 2025-06-05 13:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,13 @@ msgid "Back to Course Term in Fullscreen Viewer"
 msgstr "Takaisin kurssile -termi koko näytön tilassa"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
+#. odoo-python
+#: code:addons/website_slides_customizable_frontend_terms_and_elements/models/slide_channel.py:0
+#, python-format
+msgid "Can't hide sidebar elements individually if entire sidebar is hidden."
+msgstr "Et voi piilottaa yksittäisiä elementtejä, jos koko sivupalkki on piilotettu."
+
+#. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model,name:website_slides_customizable_frontend_terms_and_elements.model_slide_channel
 msgid "Course"
 msgstr "Kurssi"
@@ -31,9 +38,19 @@ msgid "Element Visibility"
 msgstr "Elementtien näkyvyys"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar_members
+msgid "Hide 'Members' from Course's Sidebar"
+msgstr "Piilota 'Jäsenet' kurssin sivupalkista"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar_responsible
+msgid "Hide 'Responsible' from Course's Sidebar"
+msgstr "Piilota 'Vastuuhenkilö' kurssin sivupalkista"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar
-msgid "Hide Course's Sidebar"
-msgstr "Piilota kurssin sivupalkki"
+msgid "Hide Course's Sidebar Entirely"
+msgstr "Piilota kurssin sivupalkki kokonaan"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_section_lesson_count_and_completion_time
@@ -53,7 +70,8 @@ msgstr "Piilotta tagiryhmän alasvetovalikko"
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_hide_tag_groups
 msgid "Hide the dropdown that contains by default 'Your Level' related tags"
-msgstr "Piilota alasvetovalikko, jossa näkyy oletuksena 'Tasosi' -ryhmän tageja"
+msgstr ""
+"Piilota alasvetovalikko, jossa näkyy oletuksena 'Tasosi' -ryhmän tageja"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_hide_aside_content
@@ -68,7 +86,15 @@ msgstr "Piilottaa '1h 45min' ja 'x oppitunnit' -tekstit osioiden otsikoista"
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar
 msgid "Hides the left sidebar with Last updated, Responsible person etc. info"
-msgstr "Piilottaa vasemman sivupalkin, jossa mm. Viimeinen päivitys, Vastuuhenkilö ym. tietoja"
+msgstr ""
+"Piilottaa vasemman sivupalkin, jossa mm. Viimeinen päivitys, Vastuuhenkilö "
+"ym. tietoja"
+
+#. module: website_slides_customizable_frontend_terms_and_elements
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar_members
+#: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__hide_course_sidebar_responsible
+msgid "Keep sidebar but hide single field"
+msgstr "Pidä sivupalkki, mutta piilota sieltä yksittäinen kenttä"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,field_description:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_lessons_term
@@ -88,14 +114,16 @@ msgstr "Korvaa murupolun oletustermi 'Kurssit'"
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_website__slide_channel_all_slides_link_term
 msgid "Override the default link text 'All courses' in eLearning home view"
-msgstr "Korvaa oletuslinkkiteksti 'Kaikki kurssit' verkko-oppimisen kotinäkymässä"
+msgstr ""
+"Korvaa oletuslinkkiteksti 'Kaikki kurssit' verkko-oppimisen kotinäkymässä"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_back_to_course_term
 msgid ""
 "Override the default term 'Back to Course' at top right of fullscreen viewer"
 msgstr ""
-"Korvaa 'Takaisin kurssille' -oletustermi koko näytön tilan oikeassa yläkulmassa"
+"Korvaa 'Takaisin kurssille' -oletustermi koko näytön tilan oikeassa "
+"yläkulmassa"
 
 #. module: website_slides_customizable_frontend_terms_and_elements
 #: model:ir.model.fields,help:website_slides_customizable_frontend_terms_and_elements.field_slide_channel__fullscreen_menu_lessons_term
