@@ -21,14 +21,14 @@
 {
     "name": "Website Slides Domain Filter",
     "summary": "Show website slides only to users matching a partner domain.",
-    "version": "17.0.1.1.0",
+    "version": "17.0.1.2.1",
     "category": "Elearning",
     "website": "https://github.com/tawasta/elearning",
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["website_slides"],
+    "depends": ["website_slides", "partner_domain_filter"],
     "data": [
         "views/slide_channel_views.xml",
     ],
