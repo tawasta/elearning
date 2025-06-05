@@ -20,7 +20,7 @@
 {
     "name": "eLearning: Customizable Frontend Terms and Elements",
     "summary": "Define in backend terms and visibility of certain elements",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "eLearning",
     "website": "https://github.com/tawasta/elearning",
     "author": "Tawasta",
