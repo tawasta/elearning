@@ -125,13 +125,33 @@
 
 
     <template id="course_main" inherit_id="website_slides.course_main">
-        <!-- Channel left sidebar -->
+        <!-- Hide entirely Channel left sidebar -->
         <xpath
             expr="//t[@t-call='website_slides.course_sidebar']"
             position="attributes"
         >
             <attribute name="t-if">not channel.hide_course_sidebar </attribute>
         </xpath>
+
+    </template>
+
+    <template id="course_sidebar" inherit_id="website_slides.course_sidebar">
+        <!-- Hide parts of Channel left sidebar -->
+        <xpath
+            expr="//span[@t-esc='channel.user_id.display_name']/../.."
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+                separator=" and not "
+                add="channel.hide_course_sidebar_responsible"
+            />
+        </xpath>
+
+        <xpath expr="//t[@t-esc='channel.members_count']/../.." position="attributes">
+            <attribute name="t-if">not channel.hide_course_sidebar_members</attribute>
+        </xpath>
+
     </template>
 
 

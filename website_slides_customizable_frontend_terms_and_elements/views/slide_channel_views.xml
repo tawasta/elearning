@@ -9,6 +9,8 @@
                 <field name="fullscreen_menu_lessons_term" />
                 <field name="fullscreen_menu_back_to_course_term" />
                 <field name="hide_course_sidebar" />
+                <field name="hide_course_sidebar_responsible" />
+                <field name="hide_course_sidebar_members" />
                 <field name="hide_section_lesson_count_and_completion_time" />
             </xpath>
         </field>
