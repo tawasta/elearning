@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
-import publicWidget from '@web/legacy/js/public/public_widget';
-import { Quiz } from '@website_slides/js/slides_course_quiz';
+import publicWidget from "@web/legacy/js/public/public_widget";
+import {Quiz} from "@website_slides/js/slides_course_quiz";
 
 Quiz.include({
     async _submitQuiz() {
@@ -13,14 +13,14 @@ Quiz.include({
     },
 
     _refreshSlidesList() {
-        const $wrapper = $('.o_wslides_fs_sidebar');
+        const $wrapper = $(".o_wslides_fs_sidebar");
         if (!$wrapper.length) {
-            console.warn('Quiz: .o_wslides_slides_list ei löytynyt.');
+            console.warn("Quiz: .o_wslides_slides_list ei löytynyt.");
             return;
         }
 
         $.get(window.location.href, (data) => {
-            const updatedContent = $(data).find('.o_wslides_fs_sidebar').html();
+            const updatedContent = $(data).find(".o_wslides_fs_sidebar").html();
             if (updatedContent) {
                 $wrapper.html(updatedContent);
             }

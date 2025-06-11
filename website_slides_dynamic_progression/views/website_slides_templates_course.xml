@@ -1,46 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="course_slides_list_slide_inherit_restrict"
-              inherit_id="website_slides.course_slides_list_slide"
-              name="Restrict access to slides until prerequisites completed">
+    <template
+        id="course_slides_list_slide_inherit_restrict"
+        inherit_id="website_slides.course_slides_list_slide"
+        name="Restrict access to slides until prerequisites completed"
+    >
 
         <!-- Haetaan suoritukset ja tarkastetaan -->
         <xpath expr="//div[@class='text-truncate me-auto']" position="before">
-            <t t-set="completed_slide_ids"
-               t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"/>
-            <t t-set="required_slides"
-               t-value="slide.required_previous_slide_ids"/>
-            <t t-set="can_view_slide"
-               t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)" />
+            <t
+                t-set="completed_slide_ids"
+                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+            />
+            <t t-set="required_slides" t-value="slide.required_previous_slide_ids" />
+            <t
+                t-set="can_view_slide"
+                t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)"
+            />
         </xpath>
 
         <!-- Näytetään linkki vain jos sallittu -->
-        <xpath expr="//a[@class='o_wslides_js_slides_list_slide_link']" position="attributes">
+        <xpath
+            expr="//a[@class='o_wslides_js_slides_list_slide_link']"
+            position="attributes"
+        >
             <attribute name="t-if">can_view_slide</attribute>
         </xpath>
 
         <!-- Jos ei pääsyä: pelkkä nimi -->
-        <xpath expr="//a[@class='o_wslides_js_slides_list_slide_link']" position="after">
+        <xpath
+            expr="//a[@class='o_wslides_js_slides_list_slide_link']"
+            position="after"
+        >
             <t t-if="not can_view_slide">
-                <span t-esc="slide.name" class="text-muted fw-semibold"/>
+                <span t-esc="slide.name" class="text-muted fw-semibold" />
             </t>
         </xpath>
 
         <!-- Lukko + mitkä slaidit pitää suorittaa -->
         <xpath expr="//div[@class='text-truncate me-auto']" position="inside">
             <t t-if="not can_view_slide">
-                <div class="text-muted small ms-2 mt-2 border-start border-3 border-warning ps-3">
+                <div
+                    class="text-muted small ms-2 mt-2 border-start border-3 border-warning ps-3"
+                >
                     <div class="d-flex align-items-center mb-1">
-                        <i class="fa fa-lock text-warning me-2 fs-5"/>
+                        <i class="fa fa-lock text-warning me-2 fs-5" />
                         <strong>Complete previous lessons to unlock:</strong>
                     </div>
                     <ul class="list-unstyled mb-0 ps-3">
                         <t t-foreach="required_slides" t-as="req_slide">
                             <t t-if="req_slide.id not in completed_slide_ids">
                                 <li>
-                                    <span class="badge bg-warning text-dark rounded-pill me-1">
-                                        <i class="fa fa-exclamation-circle me-1" aria-hidden="true"/>
-                                        <span t-esc="req_slide.name"/>
+                                    <span
+                                        class="badge bg-warning text-dark rounded-pill me-1"
+                                    >
+                                        <i
+                                            class="fa fa-exclamation-circle me-1"
+                                            aria-hidden="true"
+                                        />
+                                        <span t-esc="req_slide.name" />
                                     </span>
                                 </li>
                             </t>
@@ -51,26 +69,36 @@
         </xpath>
 
         <!-- Piilotetaan suorituspainike -->
-        <xpath expr="//div[contains(@class, 'o_wslides_slides_list_slide_controls')]" position="attributes">
+        <xpath
+            expr="//div[contains(@class, 'o_wslides_slides_list_slide_controls')]"
+            position="attributes"
+        >
             <attribute name="t-if">can_view_slide</attribute>
         </xpath>
 
     </template>
 
-    <template id="slide_fullscreen_sidebar_category_restrict"
-            inherit_id="website_slides.slide_fullscreen_sidebar_category"
-            name="Restrict access to fullscreen sidebar slides until prerequisites completed">
+    <template
+        id="slide_fullscreen_sidebar_category_restrict"
+        inherit_id="website_slides.slide_fullscreen_sidebar_category"
+        name="Restrict access to fullscreen sidebar slides until prerequisites completed"
+    >
 
     <!-- Haetaan suoritukset ennen slides-looppia -->
     <xpath expr="//t[@t-foreach='slides']" position="before">
-      <t t-set="completed_slide_ids"
-         t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"/>
+      <t
+                t-set="completed_slide_ids"
+                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+            />
     </xpath>
 
     <!-- Lisätään slides-looppaan logiikka slide-kohdalle -->
     <xpath expr="//t[@t-foreach='slides']/li" position="before">
-      <t t-set="required_slides" t-value="slide.required_previous_slide_ids"/>
-      <t t-set="can_view_slide" t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)"/>
+      <t t-set="required_slides" t-value="slide.required_previous_slide_ids" />
+      <t
+                t-set="can_view_slide"
+                t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)"
+            />
     </xpath>
 
     <!-- Lisätään t-if slide-li-elementtiin -->
@@ -84,15 +112,15 @@
 	    <li class="o_wslides_fs_sidebar_list_item d-flex py-1 text-muted">
 	      <div class="ms-2">
 	        <div class="d-flex align-items-center mb-1">
-	          <i class="fa fa-lock text-warning me-2" aria-hidden="true"/>
-	          <span class="text-white" t-esc="slide.name"/>
+	          <i class="fa fa-lock text-warning me-2" aria-hidden="true" />
+	          <span class="text-white" t-esc="slide.name" />
 	        </div>
 	        <strong class="text-white">Complete previous lessons to unlock:</strong>
 	        <ul class="list-unstyled mt-1 ms-4">
 	          <t t-foreach="required_slides" t-as="req_slide">
 	            <t t-if="req_slide.id not in completed_slide_ids">
 	              <li>
-	                <span t-esc="req_slide.name"/>
+	                <span t-esc="req_slide.name" />
 	              </li>
 	            </t>
 	          </t>
@@ -105,31 +133,43 @@
 
   </template>
 
-  <template id="slide_content_detailed_restrict"
-              inherit_id="website_slides.slide_content_detailed"
-              name="Restrict access to slide content until prerequisites completed">
+  <template
+        id="slide_content_detailed_restrict"
+        inherit_id="website_slides.slide_content_detailed"
+        name="Restrict access to slide content until prerequisites completed"
+    >
 
         <!-- Hae suoritukset ja tarkista oikeudet -->
-        <xpath expr="//div[contains(@class, 'd-flex flex-wrap align-items-start')]" position="before">
-            <t t-set="completed_slide_ids"
-               t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"/>
-            <t t-set="required_slides"
-               t-value="slide.required_previous_slide_ids"/>
-            <t t-set="can_view_slide"
-               t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)" />
+        <xpath
+            expr="//div[contains(@class, 'd-flex flex-wrap align-items-start')]"
+            position="before"
+        >
+            <t
+                t-set="completed_slide_ids"
+                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+            />
+            <t t-set="required_slides" t-value="slide.required_previous_slide_ids" />
+            <t
+                t-set="can_view_slide"
+                t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)"
+            />
         </xpath>
 
         <!-- Lisätään lukitusviesti heti ennen sisältöä, näkyy vain jos ei pääsyä -->
-        <xpath expr="//div[contains(@class, 'd-flex flex-wrap align-items-start')]" position="before">
+        <xpath
+            expr="//div[contains(@class, 'd-flex flex-wrap align-items-start')]"
+            position="before"
+        >
             <t t-if="not can_view_slide">
                 <div class="alert alert-warning my-3 w-100 d-flex align-items-center">
-                    <i class="fa fa-lock me-2"></i>
+                    <i class="fa fa-lock me-2" />
                     <div>
-                        <strong>Complete previous lessons to unlock this content:</strong>
+                        <strong
+                        >Complete previous lessons to unlock this content:</strong>
                         <ul class="mb-0 mt-1 ps-3">
                             <t t-foreach="required_slides" t-as="req_slide">
                                 <t t-if="req_slide.id not in completed_slide_ids">
-                                    <li><span t-esc="req_slide.name"/></li>
+                                    <li><span t-esc="req_slide.name" /></li>
                                 </t>
                             </t>
                         </ul>
@@ -139,26 +179,36 @@
         </xpath>
 
         <!-- Piilotetaan sisältö jos ei pääsyä -->
-        <xpath expr="//div[contains(@class, 'd-flex flex-wrap align-items-start')]" position="attributes">
+        <xpath
+            expr="//div[contains(@class, 'd-flex flex-wrap align-items-start')]"
+            position="attributes"
+        >
             <attribute name="t-if">can_view_slide</attribute>
         </xpath>
 
     </template>
 
-    <template id="slide_aside_training_category_restrict"
-          inherit_id="website_slides.slide_aside_training_category"
-          name="Restrict access to slide links until prerequisites completed">
+    <template
+        id="slide_aside_training_category_restrict"
+        inherit_id="website_slides.slide_aside_training_category"
+        name="Restrict access to slide links until prerequisites completed"
+    >
 
     <!-- Hae suoritetut slaidit ennen foreach -->
     <xpath expr="//t[@t-foreach='category_slide_ids']" position="before">
-        <t t-set="completed_slide_ids"
-           t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"/>
+        <t
+                t-set="completed_slide_ids"
+                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+            />
     </xpath>
 
     <!-- Lisää tarkistus foreachin sisällä -->
     <xpath expr="//t[@t-foreach='category_slide_ids']/li" position="before">
-        <t t-set="required_slides" t-value="aside_slide.required_previous_slide_ids"/>
-        <t t-set="can_view_slide" t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)"/>
+        <t t-set="required_slides" t-value="aside_slide.required_previous_slide_ids" />
+        <t
+                t-set="can_view_slide"
+                t-value="not required_slides or all(s.id in completed_slide_ids for s in required_slides)"
+            />
     </xpath>
 
     <!-- Näytä slide vain, jos sallittu -->
@@ -170,10 +220,15 @@
     <xpath expr="//t[@t-foreach='category_slide_ids']/li" position="after">
         <t t-if="not can_view_slide">
             <li class="p-0 pb-1 text-muted">
-                <div class="o_wslides_lesson_aside_list_link d-flex p-1 bg-100 text-muted">
-                    <div class="o_wslides_lesson_link_name text-truncate" t-att-title="aside_slide.name">
-                        <span t-esc="aside_slide.name"/>
-                        <i class="fa fa-lock ms-2" aria-hidden="true"/>
+                <div
+                        class="o_wslides_lesson_aside_list_link d-flex p-1 bg-100 text-muted"
+                    >
+                    <div
+                            class="o_wslides_lesson_link_name text-truncate"
+                            t-att-title="aside_slide.name"
+                        >
+                        <span t-esc="aside_slide.name" />
+                        <i class="fa fa-lock ms-2" aria-hidden="true" />
                     </div>
                 </div>
             </li>
@@ -184,7 +239,7 @@
                     <ul class="mb-0 mt-1 ps-3">
                         <t t-foreach="required_slides" t-as="req_slide">
                             <t t-if="req_slide.id not in completed_slide_ids">
-                                <li><span t-esc="req_slide.name"/></li>
+                                <li><span t-esc="req_slide.name" /></li>
                             </t>
                         </t>
                     </ul>
