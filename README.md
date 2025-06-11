@@ -18,6 +18,7 @@ addon | version | maintainers | summary
 [website_slides_core](website_slides_core/) | 17.0.1.0.0 |  | Website Slides Core
 [website_slides_customizable_frontend_terms_and_elements](website_slides_customizable_frontend_terms_and_elements/) | 17.0.1.0.0 |  | Define in backend terms and visibility of certain elements
 [website_slides_domain_filter](website_slides_domain_filter/) | 17.0.1.2.1 |  | Show website slides only to users matching a partner domain.
+[website_slides_dynamic_progression](website_slides_dynamic_progression/) | 17.0.1.0.0 |  | Require completion of previous slides before accessing new ones
 [website_slides_edu](website_slides_edu/) | 17.0.1.0.0 |  | Website Slides Edu
 
 [//]: # (end addons)
