@@ -20,18 +20,12 @@
         </xpath>
 
         <!-- Näytetään linkki vain jos sallittu -->
-        <xpath
-            expr="//div[@class='text-truncate me-auto']/a"
-            position="attributes"
-        >
+        <xpath expr="//div[@class='text-truncate me-auto']/a" position="attributes">
             <attribute name="t-if">can_view_slide</attribute>
         </xpath>
 
         <!-- Jos ei pääsyä: pelkkä nimi -->
-        <xpath
-            expr="//div[@class='text-truncate me-auto']/a"
-            position="after"
-        >
+        <xpath expr="//div[@class='text-truncate me-auto']/a" position="after">
             <t t-if="not can_view_slide">
                 <span t-esc="slide.name" class="text-muted fw-semibold" />
             </t>
