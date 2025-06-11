@@ -1,6 +1,5 @@
 /** @odoo-module **/
 
-import publicWidget from "@web/legacy/js/public/public_widget";
 import {Quiz} from "@website_slides/js/slides_course_quiz";
 
 Quiz.include({

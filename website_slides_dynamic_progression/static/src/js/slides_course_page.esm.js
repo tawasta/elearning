@@ -1,6 +1,5 @@
 /** @odoo-module **/
 
-import publicWidget from "@web/legacy/js/public/public_widget";
 import {SlideCoursePage} from "@website_slides/js/slides_course_page";
 
 SlideCoursePage.include({
