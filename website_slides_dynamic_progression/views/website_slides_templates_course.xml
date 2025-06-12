@@ -10,7 +10,7 @@
         <xpath expr="//div[@class='text-truncate me-auto']" position="before">
             <t
                 t-set="completed_slide_ids"
-                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+                t-value="request.env['slide.slide.partner'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
             />
             <t t-set="required_slides" t-value="slide.required_previous_slide_ids" />
             <t
@@ -82,7 +82,7 @@
     <xpath expr="//t[@t-foreach='slides']" position="before">
       <t
                 t-set="completed_slide_ids"
-                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+                t-value="request.env['slide.slide.partner'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
             />
     </xpath>
 
@@ -140,7 +140,7 @@
         >
             <t
                 t-set="completed_slide_ids"
-                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+                t-value="request.env['slide.slide.partner'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
             />
             <t t-set="required_slides" t-value="slide.required_previous_slide_ids" />
             <t
@@ -192,7 +192,7 @@
     <xpath expr="//t[@t-foreach='category_slide_ids']" position="before">
         <t
                 t-set="completed_slide_ids"
-                t-value="request.env['slide.slide.partner'].search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
+                t-value="request.env['slide.slide.partner'].sudo().search([('partner_id', '=', request.env.user.partner_id.id), ('completed', '=', True)]).mapped('slide_id.id')"
             />
     </xpath>
 
