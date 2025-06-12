@@ -21,6 +21,7 @@ SlideCoursePage.include({
             const updatedContent = $(data).find(".mb-5.o_wslides_slides_list").html();
             if (updatedContent) {
                 $wrapper.html(updatedContent);
+                this._updateHref();
             }
         });
     },
