@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="survey_button_retake_block_retry"
+        inherit_id="survey.survey_button_retake"
+        name="Survey: Block retry with delay"
+    >
+
+        <!-- Disable retry button if next_retry_possible_at is in the future -->
+        <xpath expr="//a[@class='btn btn-primary btn-lg']" position="attributes">
+            <attribute name="t-if">
+                not (answer.slide_partner_id and
+                     answer.slide_partner_id.next_retry_possible_at and
+                     answer.slide_partner_id.next_retry_possible_at > datetime.datetime.utcnow())
+            </attribute>
+        </xpath>
+
+
+        <!-- Show retry allowed time if not yet passed -->
+        <xpath expr="//a[@class='btn btn-primary btn-lg']" position="after">
+            <t
+                t-if="answer.slide_partner_id and answer.slide_partner_id.next_retry_possible_at"
+            >
+                <t
+                    t-set="retry_time"
+                    t-value="answer.slide_partner_id.next_retry_possible_at"
+                />
+                <t t-if="retry_time > datetime.datetime.utcnow()">
+                    <p class="alert alert-warning mt-3" role="alert">
+                        You can retry after:
+                        <t t-esc="retry_time.strftime('%-d.%-m.%Y klo %H:%M')" />
+                    </p>
+                </t>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>

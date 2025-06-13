@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_slide_slide_form_dynamic_access" model="ir.ui.view">
+        <field name="name">slide.slide.form.dynamic.access</field>
+        <field name="model">slide.slide</field>
+        <field name="inherit_id" ref="website_slides.view_slide_slide_form" />
+        <field name="arch" type="xml">
+            <field name="is_preview" position="after">
+                <field name="required_previous_slide_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+</odoo>
