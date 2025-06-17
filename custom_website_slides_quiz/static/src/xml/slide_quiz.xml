@@ -1,17 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
     <t t-inherit="website_slides.slide.slide.quiz.finish" t-inherit-mode="extension">
         <!-- Poistetaan kuva -->
-        <xpath expr="//div[contains(@class, 'o_wslides_quiz_success_image')]" position="replace">
+        <xpath
+            expr="//div[contains(@class, 'o_wslides_quiz_success_image')]"
+            position="replace"
+        >
         </xpath>
-        <xpath expr="//div[@class='pb-3 o_wslides_quiz_modal_rank_motivational']" position="replace">
+        <xpath
+            expr="//div[@class='pb-3 o_wslides_quiz_modal_rank_motivational']"
+            position="replace"
+        >
         </xpath>
-        <xpath expr="//h4[@class='o_wslides_quiz_modal_xp_gained pb-2 d-flex fade']" position="replace">
+        <xpath
+            expr="//h4[@class='o_wslides_quiz_modal_xp_gained pb-2 d-flex fade']"
+            position="replace"
+        >
         </xpath>
-        <xpath expr="//h1[@class='o_wslides_quiz_modal_title mt-3 display-4 fw-bold']" position="replace">
+        <xpath
+            expr="//h1[@class='o_wslides_quiz_modal_title mt-3 display-4 fw-bold']"
+            position="replace"
+        >
         </xpath>
         <xpath expr="//div[@class='mt-5 mb-4']/.." position="replace">
-            <div class="d-flex justify-content-center align-items-center flex-grow-1 mt-5 pt-5">
+            <div
+                class="d-flex justify-content-center align-items-center flex-grow-1 mt-5 pt-5"
+            >
                 <h1 class="o_wslides_quiz_modal_title">Section completed</h1>
             </div>
         </xpath>

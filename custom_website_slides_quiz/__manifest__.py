@@ -30,9 +30,9 @@
     "external_dependencies": {"python": [], "bin": []},
     "depends": ["website_slides"],
     "data": [],
-    'assets': {
-        'web.assets_frontend': [
-            'custom_website_slides_quiz/static/src/xml/slide_quiz.xml',
+    "assets": {
+        "web.assets_frontend": [
+            "custom_website_slides_quiz/static/src/xml/slide_quiz.xml",
         ],
     },
     "demo": [],
