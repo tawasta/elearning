@@ -10,6 +10,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[custom_website_slides_quiz](custom_website_slides_quiz/) | 17.0.1.0.0 |  | Simplifies the quiz result modal in eLearning by removing XP and progress visuals
 [website_sale_slides_force_login](website_sale_slides_force_login/) | 17.0.1.0.0 |  | Force login before bying course content
 [website_slides_backend_publish](website_slides_backend_publish/) | 17.0.1.0.0 |  | Publish slides from backend
 [website_slides_cart](website_slides_cart/) | 17.0.1.0.0 |  | Website Slides Cart
