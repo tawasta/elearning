@@ -24,13 +24,6 @@
             <attribute name="t-if">can_view_slide</attribute>
         </xpath>
 
-        <!-- Jos ei pääsyä: pelkkä nimi -->
-        <xpath expr="//div[@class='text-truncate me-auto']/a" position="after">
-            <t t-if="not can_view_slide">
-                <span t-esc="slide.name" class="text-muted fw-semibold" />
-            </t>
-        </xpath>
-
         <!-- Lukko + mitkä slaidit pitää suorittaa -->
         <xpath expr="//div[@class='text-truncate me-auto']" position="inside">
             <t t-if="not can_view_slide">
