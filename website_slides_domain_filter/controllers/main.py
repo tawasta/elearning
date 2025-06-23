@@ -79,9 +79,15 @@ class WebsiteSlidesFilter(WebsiteSlides):
             response = super().slides_channel_home(**post)
             values = response.qcontext
 
-            values["channels_my"] = self._filter_and_log(values, "channels_my", "Omat kanavat")
-            values["channels_popular"] = self._filter_and_log(values, "channels_popular", "Suositut kanavat")
-            values["channels_newest"] = self._filter_and_log(values, "channels_newest", "Uusimmat kanavat")
+            values["channels_my"] = self._filter_and_log(
+                values, "channels_my", "Omat kanavat"
+            )
+            values["channels_popular"] = self._filter_and_log(
+                values, "channels_popular", "Suositut kanavat"
+            )
+            values["channels_newest"] = self._filter_and_log(
+                values, "channels_newest", "Uusimmat kanavat"
+            )
 
             return response
         except Exception as e:
