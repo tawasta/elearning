@@ -56,6 +56,21 @@ class WebsiteSlidesFilter(WebsiteSlides):
         values["channels"] = accessible_channels
         return values
 
+    def _filter_and_log(self, values, channel_list, label):
+        """Suodattaa ja lokittaa piilotetut kanavat."""
+        original = values.get(channel_list, request.env["slide.channel"])
+        filtered = original.filtered(lambda c: c.user_in_partner_domain)
+
+        for c in original - filtered:
+            _logger.warning(
+                "Piilotetaan %s: %s (ID: %s), käyttäjältä ei ole pääsyä",
+                label,
+                c.name,
+                c.id,
+            )
+        return filtered
+
+    @http.route()
     def slides_channel_home(self, **post):
         """
         Override slides home ("/slides") to hide paywall-protected channels.
@@ -64,26 +79,14 @@ class WebsiteSlidesFilter(WebsiteSlides):
             response = super().slides_channel_home(**post)
             values = response.qcontext
 
-            def _filter_and_log(channel_list, label):
-                original = values.get(channel_list, request.env["slide.channel"])
-                filtered = original.filtered(lambda c: c.user_in_partner_domain)
-
-                for c in original - filtered:
-                    _logger.warning(
-                        "Piilotetaan %s: %s (ID: %s), käyttäjältä ei ole pääsyä",
-                        label,
-                        c.name,
-                        c.id,
-                    )
-
-                return filtered
-
-            values["channels_my"] = _filter_and_log("channels_my", "Omat kanavat")
-            values["channels_popular"] = _filter_and_log(
-                "channels_popular", "Suositut kanavat"
+            values["channels_my"] = self._filter_and_log(
+                values, "channels_my", "Omat kanavat"
             )
-            values["channels_newest"] = _filter_and_log(
-                "channels_newest", "Uusimmat kanavat"
+            values["channels_popular"] = self._filter_and_log(
+                values, "channels_popular", "Suositut kanavat"
+            )
+            values["channels_newest"] = self._filter_and_log(
+                values, "channels_newest", "Uusimmat kanavat"
             )
 
             return response
