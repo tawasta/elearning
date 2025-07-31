@@ -37,7 +37,7 @@ class WebsiteSlidesFilter(WebsiteSlides):
         for c in accessible_channels:
             if c.enroll == "payment":
                 try:
-                    _logger.info(
+                    _logger.debug(
                         "Näytetään maksullinen kanava: %s (ID: %s), tuote: %s, käyttäjä: %s (%s)",
                         c.name,
                         c.id,
