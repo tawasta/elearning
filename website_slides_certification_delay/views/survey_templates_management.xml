@@ -28,7 +28,9 @@
                 <t t-if="retry_time > datetime.datetime.utcnow()">
                     <p class="alert alert-warning mt-3" role="alert">
                         You can retry after:
-                        <t t-esc="answer.slide_partner_id.next_retry_local.strftime('%-d.%-m.%Y klo %H:%M')" />
+                        <t
+                            t-esc="answer.slide_partner_id.next_retry_local.strftime('%-d.%-m.%Y klo %H:%M')"
+                        />
                     </p>
                 </t>
             </t>
@@ -64,7 +66,9 @@
                 <t t-if="retry_time > datetime.datetime.utcnow()">
                     <p class="alert alert-warning mt-3" role="alert">
                         You can retry after:
-                        <t t-esc="answer.slide_partner_id.next_retry_local.strftime('%-d.%-m.%Y klo %H:%M')" />
+                        <t
+                            t-esc="answer.slide_partner_id.next_retry_local.strftime('%-d.%-m.%Y klo %H:%M')"
+                        />
                     </p>
                 </t>
             </t>
