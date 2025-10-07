@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-========================================
-eLearning: Auto-archive Cron for Courses
-========================================
+======================================
+eLearning: No Default E-mail Messaging
+======================================
 
-* Clears the four email template trigger fields that would be 
+* Clears the four course email template trigger fields that would be 
   filled in by default, that cannot be cleared by using user-defined defaults
   
 
