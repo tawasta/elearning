@@ -7,34 +7,46 @@ website slides domain filter
 ============================
 This module adds paywall-style domain-based access control to *eLearning courses* (i.e. `slide.channel` records).
 
-Users will only see courses (channels) if their partner record matches the defined `paywall_domain`.
+Users will only see courses if their partner record matches the defined
+**partner domain filter(s)**.
 
 Features
 ========
 
-* Add a domain per course (channel)
-* Users only see courses if their `res.partner` matches the domain
-* Filters course visibility in:
-  * Slide home page (`/slides`)
-  * Search/autocomplete
-  * Direct access to URL (blocks 404 if access denied)
-* Backend field uses domain editor widget
+* Add partner domain filters per course
+* Choose filtering behavior:
+  * **Hide course completely** (non-matching users cannot see or open it)
+  * **Hide Join/Buy buttons only** (page visible, but enrollment disabled)
+* Works seamlessly across:
+  * Course listings (`/slides`)
+  * Search and autocomplete results
+  * Direct URL access to a course page
+* Form view inherited to include the new partner-domain fields
 
 Usage
 =====
 
 1. Go to **eLearning → Courses**
-2. Open any course and add a `Partner filters`
-3. Frontend visibility will automatically be filtered:
-   * Courses are hidden from list pages, search results, and direct access
+2. Open a course record
+3. Set the **Partner filter behavior**:
+   * *Hide course from non-matching users*
+   * *Show course, hide Join/Buy for non-matching users*
+4. Add one or more **Partner filters** (domain-based rules)
+5. Save the record
+
+Frontend visibility automatically adjusts based on the current user's
+`res.partner` record:
+* Hidden courses are not listed, searchable, or accessible.
+* Courses with "Hide Join/Buy" mode remain visible but display an
+  information message instead of enrollment options.
 
 Technical details
 =================
 
-* `user_in_partner_domain`: computed Boolean based on the current user
-* Slide controller (`/slides`) is overridden to filter `channel.home` and `channel`
-* Autocomplete results are filtered at render time
-* XML inherits the form view to include the `partner_domain_filter_ids` field with proper widget
+* Extends `slide.channel` with partner-domain fields and computed visibility logic  
+* Inherits from `WebsiteSlides` controller to filter visible courses and hide CTAs  
+* Filters search results and course listings dynamically  
+* Includes XML view and QWeb template extensions
 
 
 Known issues / Roadmap
