@@ -12,7 +12,9 @@ class WebsiteSlidesFilter(WebsiteSlides):
         Extend slide channel value generation to respect partner-domain visibility.
         Only include channels that the current user is allowed to see.
         """
-        values = super().slides_channel_all_values(slide_category, slug_tags, my, **post)
+        values = super().slides_channel_all_values(
+            slide_category, slug_tags, my, **post
+        )
 
         channels = values.get("channels", request.env["slide.channel"])
         visible_channels = channels.filtered(lambda c: c.user_can_see_channel)
@@ -35,9 +37,15 @@ class WebsiteSlidesFilter(WebsiteSlides):
         response = super().slides_channel_home(**post)
         values = response.qcontext
 
-        values["channels_my"] = self._filter_and_log(values, "channels_my", "My channels")
-        values["channels_popular"] = self._filter_and_log(values, "channels_popular", "Popular channels")
-        values["channels_newest"] = self._filter_and_log(values, "channels_newest", "Newest channels")
+        values["channels_my"] = self._filter_and_log(
+            values, "channels_my", "My channels"
+        )
+        values["channels_popular"] = self._filter_and_log(
+            values, "channels_popular", "Popular channels"
+        )
+        values["channels_newest"] = self._filter_and_log(
+            values, "channels_newest", "Newest channels"
+        )
 
         return response
 
@@ -51,7 +59,11 @@ class WebsiteSlidesFilter(WebsiteSlides):
         if channel_id and not channel:
             channel = request.env["slide.channel"].browse(channel_id).exists()
 
-        if channel and (not channel.user_in_partner_domain) and channel.partner_domain_mode == "hide_channel":
+        if (
+            channel
+            and (not channel.user_in_partner_domain)
+            and channel.partner_domain_mode == "hide_channel"
+        ):
             raise NotFound()
 
         response = super().channel(channel=channel, channel_id=channel_id, **kw)

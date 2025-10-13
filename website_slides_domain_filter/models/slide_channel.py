@@ -9,7 +9,6 @@ _logger = logging.getLogger(__name__)
 class Channel(models.Model):
     _inherit = "slide.channel"
 
-
     partner_domain_mode = fields.Selection(
         [
             ("hide_channel", "Hide course from non-matching users"),

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
   <template
-      id="course_join_partner_filters_inherit"
-      inherit_id="website_slides.course_join"
-      name="Slides: hide Join/Buy CTA when partner-domain requires it">
+        id="course_join_partner_filters_inherit"
+        inherit_id="website_slides.course_join"
+        name="Slides: hide Join/Buy CTA when partner-domain requires it"
+    >
 
     <xpath expr="//div[contains(@class,'o_wslides_js_course_join')]" position="before">
       <t t-if="channel.hide_partner_cta">
@@ -13,7 +14,10 @@
       </t>
     </xpath>
 
-    <xpath expr="//div[@class='o_wslides_js_course_join flex-grow-1 d-grid']" position="attributes">
+    <xpath
+            expr="//div[@class='o_wslides_js_course_join flex-grow-1 d-grid']"
+            position="attributes"
+        >
       <attribute name="t-if">not channel.hide_partner_cta</attribute>
     </xpath>
   </template>
