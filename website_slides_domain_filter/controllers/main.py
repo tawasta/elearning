@@ -1,11 +1,7 @@
-import logging
-
-from odoo import http
+from odoo import http, _
 from odoo.http import request
 from odoo.addons.website_slides.controllers.main import WebsiteSlides
 from werkzeug.exceptions import NotFound
-
-_logger = logging.getLogger(__name__)
 
 
 class WebsiteSlidesFilter(WebsiteSlides):
@@ -13,128 +9,54 @@ class WebsiteSlidesFilter(WebsiteSlides):
         self, slide_category=None, slug_tags=None, my=False, **post
     ):
         """
-        Override default slide channel list logic to hide channels behind a paywall
-        if user does not have access.
+        Extend slide channel value generation to respect partner-domain visibility.
+        Only include channels that the current user is allowed to see.
         """
-        values = super().slides_channel_all_values(
-            slide_category, slug_tags, my, **post
-        )
+        values = super().slides_channel_all_values(slide_category, slug_tags, my, **post)
 
         channels = values.get("channels", request.env["slide.channel"])
-        accessible_channels = channels.filtered(lambda c: c.user_in_partner_domain)
-
-        # Lokitus: kanavat joihin ei ole pääsyä
-        for c in channels - accessible_channels:
-            _logger.warning(
-                "Käyttäjältä estetty pääsy kanavaan: %s (ID: %s), käyttäjä: %s (%s)",
-                c.name,
-                c.id,
-                request.env.user.name,
-                request.env.user.id,
-            )
-
-        # Lokitus: maksulliset kanavat joihin on pääsy
-        for c in accessible_channels:
-            if c.enroll == "payment":
-                try:
-                    _logger.debug(
-                        "Näytetään maksullinen kanava: %s (ID: %s), tuote: %s, käyttäjä: %s (%s)",
-                        c.name,
-                        c.id,
-                        c.product_id.display_name if c.product_id else "Ei tuotetta",
-                        request.env.user.name,
-                        request.env.user.id,
-                    )
-                except Exception as e:
-                    _logger.error(
-                        "Virhe tuotetiedon hakemisessa kanavalle %s (ID: %s): %s",
-                        c.name,
-                        c.id,
-                        str(e),
-                    )
-
-        values["channels"] = accessible_channels
+        visible_channels = channels.filtered(lambda c: c.user_can_see_channel)
+        values["channels"] = visible_channels
         return values
 
     def _filter_and_log(self, values, channel_list, label):
-        """Suodattaa ja lokittaa piilotetut kanavat."""
+        """
+        Helper to filter out channels the current user cannot see.
+        """
         original = values.get(channel_list, request.env["slide.channel"])
-        filtered = original.filtered(lambda c: c.user_in_partner_domain)
-
-        for c in original - filtered:
-            _logger.warning(
-                "Piilotetaan %s: %s (ID: %s), käyttäjältä ei ole pääsyä",
-                label,
-                c.name,
-                c.id,
-            )
-        return filtered
+        return original.filtered(lambda c: c.user_can_see_channel)
 
     @http.route()
     def slides_channel_home(self, **post):
         """
-        Override slides home ("/slides") to hide paywall-protected channels.
+        Extend the slides home route ("/slides") to filter out channels
+        that the current user should not see.
         """
-        try:
-            response = super().slides_channel_home(**post)
-            values = response.qcontext
+        response = super().slides_channel_home(**post)
+        values = response.qcontext
 
-            values["channels_my"] = self._filter_and_log(
-                values, "channels_my", "Omat kanavat"
-            )
-            values["channels_popular"] = self._filter_and_log(
-                values, "channels_popular", "Suositut kanavat"
-            )
-            values["channels_newest"] = self._filter_and_log(
-                values, "channels_newest", "Uusimmat kanavat"
-            )
+        values["channels_my"] = self._filter_and_log(values, "channels_my", "My channels")
+        values["channels_popular"] = self._filter_and_log(values, "channels_popular", "Popular channels")
+        values["channels_newest"] = self._filter_and_log(values, "channels_newest", "Newest channels")
 
-            return response
-        except Exception as e:
-            _logger.exception("Virhe slides_channel_home käsittelyssä: %s", str(e))
-            raise
+        return response
 
     @http.route()
     def channel(self, channel=False, channel_id=False, **kw):
         """
-        Override channel route to block access to filtered channels if user lacks access.
+        Extend the channel route to apply partner-domain visibility logic:
+        - hide_channel + no match → 404
+        - hide_cta + no match → show page but hide CTA
         """
         if channel_id and not channel:
             channel = request.env["slide.channel"].browse(channel_id).exists()
 
+        if channel and (not channel.user_in_partner_domain) and channel.partner_domain_mode == "hide_channel":
+            raise NotFound()
+
+        response = super().channel(channel=channel, channel_id=channel_id, **kw)
+
         if channel:
-            if not channel.user_in_partner_domain:
-                _logger.warning(
-                    "Estetty pääsy kanavalle: %s (ID: %s), käyttäjä: %s (%s)",
-                    channel.name,
-                    channel.id,
-                    request.env.user.name,
-                    request.env.user.id,
-                )
-                raise NotFound()
-            else:
-                _logger.info(
-                    "Käyttäjällä pääsy kanavalle: %s (ID: %s), enroll: %s",
-                    channel.name,
-                    channel.id,
-                    channel.enroll,
-                )
+            response.qcontext["hide_partner_cta"] = bool(channel.hide_partner_cta)
 
-                if channel.enroll == "payment":
-                    try:
-                        _logger.info(
-                            "Maksullinen kanava avattu: %s (ID: %s), tuote: %s",
-                            channel.name,
-                            channel.id,
-                            channel.product_id.display_name
-                            if channel.product_id
-                            else "Ei tuotetta",
-                        )
-                    except Exception as e:
-                        _logger.error(
-                            "Tuotetietojen luku epäonnistui kanavalle %s: %s",
-                            channel.name,
-                            str(e),
-                        )
-
-        return super().channel(channel=channel, channel_id=channel_id, **kw)
+        return response

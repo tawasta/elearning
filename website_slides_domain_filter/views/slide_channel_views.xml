@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
         <field name="arch" type="xml">
             <field name="website_id" position="after">
+                <field name="partner_domain_mode" />
                 <field name="partner_domain_filter_ids" widget="many2many_tags" />
             </field>
         </field>
