@@ -31,5 +31,6 @@
     "depends": ["website_slides", "partner_domain_filter"],
     "data": [
         "views/slide_channel_views.xml",
+        "views/website_slides_templates_course.xml",
     ],
 }
