@@ -36,7 +36,8 @@ class SlideChannel(models.Model):
         string="Back to Course Term in Fullscreen Viewer",
         translate=True,
         default="Back to Course",
-        help="Override the default term 'Back to Course' at top right of fullscreen viewer",
+        help="Override the default term 'Back to Course' "
+        "at top right of fullscreen viewer",
     )
 
     @api.constrains(

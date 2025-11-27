@@ -1,7 +1,9 @@
-from odoo import http, _
-from odoo.http import request
-from odoo.addons.website_slides.controllers.main import WebsiteSlides
 from werkzeug.exceptions import NotFound
+
+from odoo import http
+from odoo.http import request
+
+from odoo.addons.website_slides.controllers.main import WebsiteSlides
 
 
 class WebsiteSlidesFilter(WebsiteSlides):

@@ -15,9 +15,7 @@ class SlideChannelFeedback(models.TransientModel):
     _description = "Channel Feedback Wizard"
 
     # composer content
-    subject = fields.Char(
-        "Subject", compute="_compute_subject", readonly=False, store=True
-    )
+    subject = fields.Char(compute="_compute_subject", readonly=False, store=True)
     body = fields.Html(
         "Contents",
         sanitize_style=True,
@@ -71,7 +69,8 @@ class SlideChannelFeedback(models.TransientModel):
         if not self.env.user.email:
             raise UserError(
                 _(
-                    "Unable to post message, please configure the sender's email address."
+                    "Unable to post message, "
+                    "please configure the sender's email address."
                 )
             )
 

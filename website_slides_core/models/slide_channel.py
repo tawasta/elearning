@@ -10,9 +10,7 @@ class SlideChannel(models.Model):
     )
 
     def _action_add_members(self, target_partners, **member_values):
-        response = super(SlideChannel, self)._action_add_members(
-            target_partners, **member_values
-        )
+        response = super()._action_add_members(target_partners, **member_values)
         for r in response:
             values = {
                 "name": r.partner_id.name,

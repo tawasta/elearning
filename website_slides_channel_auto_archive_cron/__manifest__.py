@@ -19,11 +19,11 @@
 ##############################################################################
 {
     "name": "eLearning: Auto-archive Cron for Courses",
-    "summary": "Enables setting a date when the course will be unpublished and archived",
+    "summary": "Enables setting an unpublish date for courses",
     "version": "17.0.1.0.0",
     "category": "eLearning",
     "website": "https://github.com/tawasta/elearning",
-    "author": "Tawasta",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
