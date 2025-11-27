@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import fields, models
 
 
 class SlideChannel(models.Model):
@@ -7,5 +7,6 @@ class SlideChannel(models.Model):
     retry_delay_hours = fields.Integer(
         string="Retry Delay (hours)",
         default=24,
-        help="How many hours the user must wait after a failed certification before retrying.",
+        help="How many hours the user must wait "
+        "after a failed certification before retrying.",
     )

@@ -1,7 +1,7 @@
-from odoo import models, fields, http, _
-from odoo.http import request
-from odoo.tools.safe_eval import safe_eval
 import logging
+
+from odoo import fields, models
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -19,7 +19,8 @@ class Channel(models.Model):
         help=(
             "Controls what partner domain filters do:\n"
             "- Hide course: non-matching users cannot see or open the course.\n"
-            "- Hide Join/Buy: course page is visible, but Join/Buy is hidden and server-side enrollment/purchase is blocked."
+            "- Hide Join/Buy: course page is visible, "
+            "but Join/Buy is hidden and server-side enrollment/purchase is blocked."
         ),
     )
 

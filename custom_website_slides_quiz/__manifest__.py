@@ -19,11 +19,11 @@
 ##############################################################################
 {
     "name": "Custom Website Slides Quiz Modal",
-    "summary": "Simplifies the quiz result modal in eLearning by removing XP and progress visuals",
+    "summary": "Simplifies eLearning quiz result by removing XP and progress visuals",
     "version": "17.0.1.0.0",
     "category": "Website",
     "website": "https://github.com/tawasta/elearning",
-    "author": "Tawasta",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
