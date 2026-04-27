@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_slides_channel_auto_remove_participant_after_x_days
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20250428\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-27 12:22+0000\n"
+"PO-Revision-Date: 2026-04-27 12:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model.fields,field_description:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel__auto_remove_participant_after_days
+msgid "Access Removed After (Days)"
+msgstr "Montako päivää pääsyn sulkemiseen"
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model.fields,field_description:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel__auto_remove_participant
+msgid "Auto-remove Participant Access"
+msgstr "Sulje pääsy automaattisesti"
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model,name:website_slides_channel_auto_remove_participant_after_x_days.model_slide_channel
+msgid "Course"
+msgstr "Kurssi"
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model.fields,help:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel__auto_remove_participant
+msgid ""
+"If enabled, participants will be automatically removed from this course "
+"after the configured number of days have elapsed since they joined."
+msgstr ""
+"Jos käytössä, osallistujat poistetaan automaattisesti kurssilta "
+"kun heidän kurssille liittymisestään on kulunut tietty määrä päiviä."
+
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model.fields,help:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel__auto_remove_participant_after_days
+msgid ""
+"Number of days after which a participant is automatically removed from the "
+"course, counted from the day they joined."
+msgstr ""
+"Päivien lukumäärä minkä jälkeen osallistuja poistetaan kurssilta, "
+"hänen rekisteröitymisajankohdastaan laskien."
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#. odoo-python
+#: code:addons/website_slides_channel_auto_remove_participant_after_x_days/models/slide_channel.py:0
+#, python-format
+msgid ""
+"Participant %(partner)s has been automatically removed from this course "
+"after %(days)s day(s)."
+msgstr ""
+"Osallistuja %(partner)s on automaattisesti poistettu kurssilta "
+"%(days)s day(s) päivän jälkeen."
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#. odoo-python
+#: code:addons/website_slides_channel_auto_remove_participant_after_x_days/models/slide_channel.py:0
+#, python-format
+msgid ""
+"When auto-removal of participants is enabled, the number of days must be "
+"greater than zero (course: %(name)s)."
+msgstr ""
+"Kun 'Sulje pääsy automaattisesti' on käytössä, päivien lukumäärä pitää olla "
+"suurempi kuin nolla (kurssi: %(name)s)."
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.actions.server,name:website_slides_channel_auto_remove_participant_after_x_days.ir_cron_auto_remove_participants_ir_actions_server
+msgid "eLearning: Auto-remove expired participants"
+msgstr "eLearning: Sulje vanhentuneet pääsyt kurssille"

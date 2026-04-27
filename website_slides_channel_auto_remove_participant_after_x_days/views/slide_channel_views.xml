@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_slide_channel_form_inherit" model="ir.ui.view">
+        <field name="name">slide.channel.view.form.auto.remove.participant</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
+        <field name="arch" type="xml">
+            <field name="enroll_msg" position="after">
+                <field name="auto_remove_participant" widget="boolean_toggle" />
+                <field
+                    name="auto_remove_participant_after_days"
+                    invisible="not auto_remove_participant"
+                    required="auto_remove_participant"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
