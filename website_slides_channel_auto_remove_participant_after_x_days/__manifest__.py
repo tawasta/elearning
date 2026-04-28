@@ -1,7 +1,7 @@
 ##############################################################################
 #
-#    Author: Tawasta
-#    Copyright 2020 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
+#    Author: Futural Oy
+#    Copyright 2026- Futural Oy (https://futural.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,10 +18,10 @@
 #
 ##############################################################################
 {
-    "name": "Custom Website Slides Quiz Modal",
-    "summary": "Simplifies eLearning quiz result by removing XP and progress visuals",
+    "name": "eLearning: Auto-remove Course Participants after X Days",
+    "summary": "Enables revoking course access automatically per participant",
     "version": "17.0.1.0.0",
-    "category": "Website",
+    "category": "eLearning",
     "website": "https://github.com/tawasta/elearning",
     "author": "Futural",
     "license": "AGPL-3",
@@ -29,11 +29,9 @@
     "installable": True,
     "external_dependencies": {"python": [], "bin": []},
     "depends": ["website_slides"],
-    "data": [],
-    "assets": {
-        "web.assets_frontend": [
-            "custom_website_slides_quiz/static/src/xml/slide_quiz.xml",
-        ],
-    },
+    "data": [
+        "data/ir_cron_data.xml",
+        "views/slide_channel_views.xml",
+    ],
     "demo": [],
 }

@@ -1,11 +1,11 @@
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class SlideSlidePartner(models.Model):
     _inherit = "slide.slide.partner"
 
-    last_failed_attempt = fields.Datetime("Last Failed Attempt", readonly=True)
-    next_retry_possible_at = fields.Datetime("Next Retry Allowed At")
+    last_failed_attempt = fields.Datetime(readonly=True)
+    next_retry_possible_at = fields.Datetime()
 
     next_retry_local = fields.Datetime(
         string="Next Retry (Local Time)",

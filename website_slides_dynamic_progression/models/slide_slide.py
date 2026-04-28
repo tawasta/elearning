@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import _, fields, models
 from odoo.exceptions import AccessError
 
 
@@ -34,5 +34,8 @@ class SlideSlide(models.Model):
             missing_slides = set(required_slides.ids) - set(completed_slides.ids)
             if missing_slides:
                 raise AccessError(
-                    "You must complete required previous sections before accessing this one."
+                    _(
+                        "You must complete required previous sections "
+                        "before accessing this one."
+                    )
                 )

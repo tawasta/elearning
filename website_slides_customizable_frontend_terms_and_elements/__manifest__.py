@@ -23,7 +23,7 @@
     "version": "17.0.1.0.0",
     "category": "eLearning",
     "website": "https://github.com/tawasta/elearning",
-    "author": "Tawasta",
+    "author": "Futural",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
