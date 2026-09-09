@@ -23,5 +23,6 @@ addon | version | maintainers | summary
 [website_slides_domain_filter](website_slides_domain_filter/) | 17.0.1.2.1 |  | Show website slides only to users matching a partner domain.
 [website_slides_dynamic_progression](website_slides_dynamic_progression/) | 17.0.1.0.0 |  | Require completion of previous slides before accessing new ones
 [website_slides_edu](website_slides_edu/) | 17.0.1.0.0 |  | Website Slides Edu
+[website_slides_invite_sender_from_email_template](website_slides_invite_sender_from_email_template/) | 17.0.1.0.0 |  | Use the mail template's 'From' address for course invitation and enrollment emails
 
 [//]: # (end addons)
