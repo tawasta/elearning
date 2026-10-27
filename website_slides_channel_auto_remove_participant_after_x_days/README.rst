@@ -21,13 +21,19 @@ Configuration
 
 Usage
 =====
-* Let users register to courses as usual. Their access will be revoked as 
-  enough days pass from their initial course registration.
+* Let users register to courses as usual. Their access will be revoked as
+  enough days pass from the day they joined the course.
+* A participant who rejoins the course after being removed (e.g. by registering
+  to another event linked to the course with ``event_elearning_materials``)
+  starts a new access period. The start of the current period is shown as
+  "Joined On" on the participant's course membership.
+* When the module is installed or updated, "Joined On" of existing memberships
+  is filled with their creation date, so their access period doesn't change.
 
 Known issues / Roadmap
 ======================
 * If you need a course-wide archive date and have no need for participant-specific
-  access revoking, see the website_slides_auto_archive_cron module instead.
+  access revoking, see the `website_slides_auto_archive_cron`` module instead.
 
 Credits
 =======
