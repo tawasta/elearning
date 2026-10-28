@@ -20,7 +20,7 @@
 {
     "name": "eLearning: Auto-remove Course Participants after X Days",
     "summary": "Enables revoking course access automatically per participant",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "category": "eLearning",
     "website": "https://github.com/tawasta/elearning",
     "author": "Futural",
@@ -34,4 +34,5 @@
         "views/slide_channel_views.xml",
     ],
     "demo": [],
+    "post_init_hook": "post_init_hook",
 }
