@@ -26,6 +26,11 @@ msgid "Auto-remove Participant Access"
 msgstr "Sulje pääsy automaattisesti"
 
 #. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model,name:website_slides_channel_auto_remove_participant_after_x_days.model_slide_channel_partner
+msgid "Channel / Partners (Members)"
+msgstr "Kanava / Kumppanit (Jäsenet)"
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
 #: model:ir.model,name:website_slides_channel_auto_remove_participant_after_x_days.model_slide_channel
 msgid "Course"
 msgstr "Kurssi"
@@ -34,20 +39,26 @@ msgstr "Kurssi"
 #: model:ir.model.fields,help:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel__auto_remove_participant
 msgid ""
 "If enabled, participants will be automatically removed from this course "
-"after the configured number of days have elapsed since they joined."
+"after the configured number of days have elapsed since they joined or "
+"rejoined."
 msgstr ""
 "Jos käytössä, osallistujat poistetaan automaattisesti kurssilta "
-"kun heidän kurssille liittymisestään on kulunut tietty määrä päiviä."
+"kun heidän kurssille liittymisestään tai uudelleen liittymisestään on "
+"kulunut tietty määrä päiviä."
 
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model.fields,field_description:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel_partner__joined_date
+msgid "Joined On"
+msgstr "Liittynyt"
 
 #. module: website_slides_channel_auto_remove_participant_after_x_days
 #: model:ir.model.fields,help:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel__auto_remove_participant_after_days
 msgid ""
 "Number of days after which a participant is automatically removed from the "
-"course, counted from the day they joined."
+"course, counted from the day they joined or rejoined."
 msgstr ""
 "Päivien lukumäärä minkä jälkeen osallistuja poistetaan kurssilta, "
-"hänen rekisteröitymisajankohdastaan laskien."
+"hänen liittymis- tai uudelleenliittymisajankohdastaan laskien."
 
 #. module: website_slides_channel_auto_remove_participant_after_x_days
 #. odoo-python
@@ -58,7 +69,16 @@ msgid ""
 "after %(days)s day(s)."
 msgstr ""
 "Osallistuja %(partner)s on automaattisesti poistettu kurssilta "
-"%(days)s day(s) päivän jälkeen."
+"%(days)s päivän jälkeen."
+
+#. module: website_slides_channel_auto_remove_participant_after_x_days
+#: model:ir.model.fields,help:website_slides_channel_auto_remove_participant_after_x_days.field_slide_channel_partner__joined_date
+msgid ""
+"Start of the current access period: when the participant joined or rejoined "
+"the course."
+msgstr ""
+"Nykyisen käyttöoikeusjakson alku: milloin osallistuja liittyi tai liittyi "
+"uudelleen kurssille."
 
 #. module: website_slides_channel_auto_remove_participant_after_x_days
 #. odoo-python

@@ -13,13 +13,13 @@ class SlideChannel(models.Model):
         default=False,
         help="If enabled, participants will be automatically removed from this "
         "course after the configured number of days have elapsed since "
-        "they joined.",
+        "they joined or rejoined.",
     )
     auto_remove_participant_after_days = fields.Integer(
         string="Access Removed After (Days)",
         default=30,
         help="Number of days after which a participant is automatically "
-        "removed from the course, counted from the day they joined.",
+        "removed from the course, counted from the day they joined or rejoined.",
     )
 
     @api.constrains("auto_remove_participant", "auto_remove_participant_after_days")
@@ -63,7 +63,7 @@ class SlideChannel(models.Model):
             expired_memberships = SlideChannelPartner.search(
                 [
                     ("channel_id", "=", channel.id),
-                    ("create_date", "<", cutoff),
+                    ("joined_date", "<", cutoff),
                 ]
             )
             for membership in expired_memberships:
